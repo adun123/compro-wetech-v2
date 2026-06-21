@@ -1,0 +1,526 @@
+- main [ref=e2]:
+  - navigation [ref=e4]:
+    - link "W WeTechStudio" [ref=e5] [cursor=pointer]:
+      - /url: "#"
+      - generic [ref=e6]: W
+      - generic [ref=e7]: WeTechStudio
+    - list [ref=e8]:
+      - listitem [ref=e9]:
+        - link "Layanan" [ref=e10] [cursor=pointer]:
+          - /url: "#services"
+      - listitem [ref=e11]:
+        - link "AI Solution" [ref=e12] [cursor=pointer]:
+          - /url: "#ai-solution"
+      - listitem [ref=e13]:
+        - link "Use Cases" [ref=e14] [cursor=pointer]:
+          - /url: "#use-cases"
+      - listitem [ref=e15]:
+        - link "Pricing" [ref=e16] [cursor=pointer]:
+          - /url: "#pricing"
+      - listitem [ref=e17]:
+        - link "Kontak" [ref=e18] [cursor=pointer]:
+          - /url: "#contact"
+    - link "Konsultasi Gratis" [ref=e20] [cursor=pointer]:
+      - /url: https://wa.me/6281234567890?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20konsultasi%20project
+  - generic [ref=e23]:
+    - generic [ref=e24]:
+      - img [ref=e25]
+      - text: Digital Technology Studio
+    - heading "Build Smarter Digital Systems for Growing Businesses" [level=1] [ref=e27]:
+      - text: Build Smarter
+      - generic [ref=e28]: Digital Systems
+      - text: for Growing Businesses
+    - paragraph [ref=e29]: WeTech Studio membantu bisnis membangun website, sistem custom, dashboard, dan solusi AI yang dirancang untuk meningkatkan kredibilitas, efisiensi, dan pertumbuhan.
+    - generic [ref=e30]:
+      - link "Konsultasi Project" [ref=e31] [cursor=pointer]:
+        - /url: https://wa.me/6281234567890?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20konsultasi%20project
+        - text: Konsultasi Project
+        - img [ref=e32]
+      - link "Lihat Layanan" [ref=e34] [cursor=pointer]:
+        - /url: "#services"
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - generic [ref=e37]: 50+
+        - generic [ref=e38]: Project Selesai
+      - generic [ref=e39]:
+        - generic [ref=e40]: 30+
+        - generic [ref=e41]: Klien Puas
+      - generic [ref=e42]:
+        - generic [ref=e43]: 3+
+        - generic [ref=e44]: Tahun Pengalaman
+  - generic [ref=e49]:
+    - generic [ref=e51]:
+      - paragraph [ref=e52]: Kenali Masalahnya
+      - heading "Apakah bisnis Anda mengalami salah satu ini?" [level=2] [ref=e53]
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e56]: "01"
+        - generic [ref=e57]:
+          - heading "Website terlihat kurang profesional" [level=3] [ref=e58]
+          - paragraph [ref=e59]: First impression buruk membuat calon klien ragu sebelum bicara. Kompetitor yang tampak lebih profesional menang duluan.
+        - img [ref=e61]
+      - generic [ref=e63]:
+        - generic [ref=e64]: "02"
+        - generic [ref=e65]:
+          - heading "Proses bisnis masih manual" [level=3] [ref=e66]
+          - paragraph [ref=e67]: Tim menghabiskan waktu untuk tugas berulang yang seharusnya bisa diotomasi — membuang energi dan memperlambat growth.
+        - img [ref=e69]
+      - generic [ref=e71]:
+        - generic [ref=e72]: "03"
+        - generic [ref=e73]:
+          - heading "Data tersebar di Excel & WhatsApp" [level=3] [ref=e74]
+          - paragraph [ref=e75]: Tidak ada single source of truth. Keputusan bisnis diambil berdasarkan data yang tidak akurat atau tidak sinkron.
+        - img [ref=e77]
+      - generic [ref=e79]:
+        - generic [ref=e80]: "04"
+        - generic [ref=e81]:
+          - heading "Tidak punya sistem internal yang rapi" [level=3] [ref=e82]
+          - paragraph [ref=e83]: Tanpa sistem yang terstruktur, skalabilitas bisnis terhambat. Setiap pertumbuhan justru menambah kompleksitas operasional.
+        - img [ref=e85]
+      - generic [ref=e87]:
+        - generic [ref=e88]: "05"
+        - generic [ref=e89]:
+          - heading "Sulit scale tanpa digitalisasi" [level=3] [ref=e90]
+          - paragraph [ref=e91]: Bisnis yang bergantung pada proses manual tidak bisa tumbuh cepat. Operasional yang tidak terdigitalisasi menjadi bottleneck utama.
+        - img [ref=e93]
+  - generic [ref=e96]:
+    - paragraph [ref=e97]: Solusi Kami
+    - generic [ref=e98]:
+      - heading "WeTech Studio hadir sebagai technology partner yang mengubah kebutuhan bisnis menjadi solusi digital yang fungsional, scalable, dan mudah digunakan." [level=2] [ref=e99]:
+        - text: WeTech Studio hadir sebagai
+        - emphasis [ref=e100]: technology partner
+        - text: yang mengubah kebutuhan bisnis menjadi solusi digital yang fungsional, scalable, dan mudah digunakan.
+      - paragraph [ref=e101]: Kami tidak hanya membangun produk digital — kami memahami bisnis Anda, merancang solusi yang tepat, dan memastikan teknologi yang kami bangun benar-benar bekerja untuk pertumbuhan Anda.
+    - generic [ref=e102]:
+      - generic [ref=e103]:
+        - generic [ref=e104]: ⚡
+        - heading "Functional" [level=3] [ref=e105]
+        - paragraph [ref=e106]: Solusi yang benar-benar bekerja sesuai kebutuhan bisnis nyata.
+      - generic [ref=e107]:
+        - generic [ref=e108]: 📐
+        - heading "Scalable" [level=3] [ref=e109]
+        - paragraph [ref=e110]: Dibangun untuk tumbuh bersama bisnis Anda, tidak perlu rebuild dari nol.
+      - generic [ref=e111]:
+        - generic [ref=e112]: 🎯
+        - heading "Strategic" [level=3] [ref=e113]
+        - paragraph [ref=e114]: Setiap keputusan teknis didasarkan pada tujuan bisnis yang jelas.
+      - generic [ref=e115]:
+        - generic [ref=e116]: 🤝
+        - heading "Supportive" [level=3] [ref=e117]
+        - paragraph [ref=e118]: End-to-end support dari konsultasi hingga setelah launch.
+  - generic [ref=e120]:
+    - generic [ref=e121]:
+      - paragraph [ref=e122]: Layanan Kami
+      - heading "Solusi digital lengkap untuk setiap kebutuhan bisnis" [level=2] [ref=e123]
+    - generic [ref=e125]:
+      - generic [ref=e126] [cursor=pointer]:
+        - generic [ref=e127]:
+          - generic [ref=e128]: "01"
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - heading "Company Profile Website" [level=3] [ref=e131]
+              - generic [ref=e132]: Web
+            - paragraph [ref=e133]: Bangun kehadiran digital yang kredibel
+            - generic [ref=e134]:
+              - paragraph [ref=e135]: Website profesional yang menceritakan brand Anda dengan kuat. Dirancang untuk meningkatkan kepercayaan dan konversi dari pengunjung menjadi calon klien.
+              - generic [ref=e136]:
+                - generic [ref=e137]: Design premium & custom
+                - generic [ref=e138]: Mobile-first responsive
+                - generic [ref=e139]: SEO-optimized
+                - generic [ref=e140]: Fast loading
+        - img [ref=e142]
+      - generic [ref=e145] [cursor=pointer]:
+        - generic [ref=e146]:
+          - generic [ref=e147]: "02"
+          - generic [ref=e148]:
+            - generic [ref=e149]:
+              - heading "Landing Page" [level=3] [ref=e150]
+              - generic [ref=e151]: Web
+            - paragraph [ref=e152]: Konversi yang lebih tinggi
+        - img [ref=e154]
+      - generic [ref=e156] [cursor=pointer]:
+        - generic [ref=e157]:
+          - generic [ref=e158]: "03"
+          - generic [ref=e159]:
+            - generic [ref=e160]:
+              - heading "Custom Web Application" [level=3] [ref=e161]
+              - generic [ref=e162]: App
+            - paragraph [ref=e163]: Sistem yang sesuai proses bisnis Anda
+        - img [ref=e165]
+      - generic [ref=e167] [cursor=pointer]:
+        - generic [ref=e168]:
+          - generic [ref=e169]: "04"
+          - generic [ref=e170]:
+            - generic [ref=e171]:
+              - heading "Dashboard & Management System" [level=3] [ref=e172]
+              - generic [ref=e173]: System
+            - paragraph [ref=e174]: Data bisnis dalam satu tempat
+        - img [ref=e176]
+      - generic [ref=e178] [cursor=pointer]:
+        - generic [ref=e179]:
+          - generic [ref=e180]: "05"
+          - generic [ref=e181]:
+            - generic [ref=e182]:
+              - heading "API & Backend Integration" [level=3] [ref=e183]
+              - generic [ref=e184]: Integration
+            - paragraph [ref=e185]: Hubungkan sistem yang sudah ada
+        - img [ref=e187]
+      - generic [ref=e189] [cursor=pointer]:
+        - generic [ref=e190]:
+          - generic [ref=e191]: "06"
+          - generic [ref=e192]:
+            - generic [ref=e193]:
+              - heading "AI Solution & Automation" [level=3] [ref=e194]
+              - generic [ref=e195]: AI
+            - paragraph [ref=e196]: Otomasi cerdas untuk efisiensi bisnis
+        - img [ref=e198]
+    - link "Diskusikan Kebutuhan Anda" [ref=e201] [cursor=pointer]:
+      - /url: https://wa.me/6281234567890?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20konsultasi%20project
+      - text: Diskusikan Kebutuhan Anda
+      - img [ref=e202]
+  - generic [ref=e206]:
+    - generic [ref=e207]:
+      - paragraph [ref=e208]: AI Solution
+      - heading "AI bukan gimmick alat efisiensi nyata" [level=2] [ref=e209]:
+        - text: AI bukan
+        - emphasis [ref=e210]: gimmick
+        - text: alat efisiensi nyata
+      - paragraph [ref=e211]: Kami tidak menjual AI sebagai buzzword. Setiap solusi AI yang kami bangun memiliki use case nyata, diukur efektivitasnya, dan dirancang untuk menghemat waktu dan biaya operasional bisnis Anda.
+      - generic [ref=e212]:
+        - generic [ref=e213]:
+          - generic [ref=e214]: 80%
+          - generic [ref=e215]: Pengurangan waktu CS
+        - generic [ref=e216]:
+          - generic [ref=e217]: 24/7
+          - generic [ref=e218]: Layanan tanpa henti
+        - generic [ref=e219]:
+          - generic [ref=e220]: 3x
+          - generic [ref=e221]: Respons lebih cepat
+      - link "Tanya tentang AI Solution" [ref=e222] [cursor=pointer]:
+        - /url: https://wa.me/6281234567890?text=Halo%20WeTech%20Studio%2C%20saya%20tertarik%20dengan%20AI%20Solution
+    - generic [ref=e223]:
+      - generic [ref=e224]:
+        - generic [ref=e225]: 💬
+        - generic [ref=e226]:
+          - heading "AI Chatbot & Customer Service" [level=3] [ref=e227]
+          - paragraph [ref=e228]: Chatbot cerdas yang mampu menjawab pertanyaan pelanggan 24/7, memproses leads, dan mengeskalasi ke tim human saat diperlukan.
+      - generic [ref=e229]:
+        - generic [ref=e230]: 🤖
+        - generic [ref=e231]:
+          - heading "AI Customer Service Automation" [level=3] [ref=e232]
+          - paragraph [ref=e233]: Automasi alur CS dari triage tiket, response template, hingga follow-up otomatis — tim Anda fokus pada kasus yang benar-benar butuh perhatian.
+      - generic [ref=e234]:
+        - generic [ref=e235]: 🧠
+        - generic [ref=e236]:
+          - heading "AI Internal Knowledge Assistant" [level=3] [ref=e237]
+          - paragraph [ref=e238]: Asisten AI berbasis data internal perusahaan. Karyawan bisa tanya kebijakan, prosedur, atau informasi produk — langsung dapat jawaban akurat.
+      - generic [ref=e239]:
+        - generic [ref=e240]: ⚙️
+        - generic [ref=e241]:
+          - heading "AI Business Automation" [level=3] [ref=e242]
+          - paragraph [ref=e243]: Automasi proses bisnis berulang menggunakan AI — dari klasifikasi dokumen, ekstraksi data, hingga pengambilan keputusan berbasis rules yang kompleks.
+      - generic [ref=e244]:
+        - generic [ref=e245]: 🔗
+        - generic [ref=e246]:
+          - heading "Multi-channel Integration" [level=3] [ref=e247]
+          - paragraph [ref=e248]: Solusi AI terintegrasi langsung ke website, WhatsApp, dashboard, dan workflow bisnis yang sudah berjalan — tanpa mengganggu sistem yang ada.
+  - generic [ref=e250]:
+    - generic [ref=e251]:
+      - paragraph [ref=e252]: Proses Kerja
+      - heading "Dari diskusi hingga live & tumbuh" [level=2] [ref=e253]
+    - generic [ref=e256]:
+      - generic [ref=e257]:
+        - generic [ref=e258]: 🔍
+        - generic [ref=e259]:
+          - generic [ref=e260]:
+            - generic [ref=e261]: "01"
+            - heading "Discovery" [level=3] [ref=e262]
+          - paragraph [ref=e263]: Kami memahami bisnis, tujuan, dan tantangan Anda secara mendalam sebelum menulis satu baris kode pun.
+      - generic [ref=e264]:
+        - generic [ref=e265]: 🗺️
+        - generic [ref=e266]:
+          - generic [ref=e267]:
+            - generic [ref=e268]: "02"
+            - heading "Strategy" [level=3] [ref=e269]
+          - paragraph [ref=e270]: Merancang arsitektur solusi, tech stack, timeline, dan roadmap yang sesuai scope dan budget.
+      - generic [ref=e271]:
+        - generic [ref=e272]: 🎨
+        - generic [ref=e273]:
+          - generic [ref=e274]:
+            - generic [ref=e275]: "03"
+            - heading "Design" [level=3] [ref=e276]
+          - paragraph [ref=e277]: UI/UX yang bersih, intuitif, dan sesuai brand identity Anda. Prototype interaktif sebelum development.
+      - generic [ref=e278]:
+        - generic [ref=e279]: ⚙️
+        - generic [ref=e280]:
+          - generic [ref=e281]:
+            - generic [ref=e282]: "04"
+            - heading "Development" [level=3] [ref=e283]
+          - paragraph [ref=e284]: Pengembangan dengan standar kode yang bersih, terstruktur, dan scalable. Regular update progress.
+      - generic [ref=e285]:
+        - generic [ref=e286]: ✅
+        - generic [ref=e287]:
+          - generic [ref=e288]:
+            - generic [ref=e289]: "05"
+            - heading "Testing" [level=3] [ref=e290]
+          - paragraph [ref=e291]: QA menyeluruh — functional testing, cross-browser, mobile responsiveness, dan performance check.
+      - generic [ref=e292]:
+        - generic [ref=e293]: 🚀
+        - generic [ref=e294]:
+          - generic [ref=e295]:
+            - generic [ref=e296]: "06"
+            - heading "Launch" [level=3] [ref=e297]
+          - paragraph [ref=e298]: Deployment yang aman dengan monitoring, backup, dan dukungan penuh saat go-live.
+      - generic [ref=e299]:
+        - generic [ref=e300]: 🛡️
+        - generic [ref=e301]:
+          - generic [ref=e302]:
+            - generic [ref=e303]: "07"
+            - heading "Maintenance" [level=3] [ref=e304]
+          - paragraph [ref=e305]: Support berkelanjutan, update, dan pengembangan fitur baru sesuai pertumbuhan bisnis Anda.
+  - generic [ref=e308]:
+    - generic [ref=e309]:
+      - generic [ref=e310]:
+        - paragraph [ref=e311]: Use Cases
+        - heading "Solusi berdasarkan kebutuhan bisnis" [level=2] [ref=e312]
+      - paragraph [ref=e313]: Bukan klaim portfolio. Ini contoh masalah bisnis yang umum kami bantu petakan menjadi website, sistem, dashboard, integrasi, atau automasi AI yang konkret.
+    - generic [ref=e314]:
+      - generic [ref=e315]:
+        - generic [ref=e316]:
+          - generic [ref=e319]:
+            - generic [ref=e320]: Website & CRM
+            - generic [ref=e321]: "01"
+          - heading "Lead masuk tidak terukur" [level=3] [ref=e322]
+        - generic [ref=e323]:
+          - generic [ref=e324]:
+            - generic [ref=e325]:
+              - paragraph [ref=e326]: Kebutuhan
+              - paragraph [ref=e327]: Tim marketing sudah menjalankan campaign, tetapi sumber lead, kualitas prospek, dan follow-up masih sulit dipantau.
+            - generic [ref=e328]:
+              - paragraph [ref=e329]: Solusi
+              - paragraph [ref=e330]: Landing page terarah, form terstruktur, tracking event, dan alur lead yang siap diteruskan ke CRM atau WhatsApp.
+          - generic [ref=e331]:
+            - generic [ref=e332]: Lead source jelas
+            - generic [ref=e333]: Follow-up lebih rapi
+            - generic [ref=e334]: Data campaign terbaca
+      - generic [ref=e335]:
+        - generic [ref=e336]:
+          - generic [ref=e339]:
+            - generic [ref=e340]: Custom System
+            - generic [ref=e341]: "02"
+          - heading "Operasional manual berulang" [level=3] [ref=e342]
+        - generic [ref=e343]:
+          - generic [ref=e344]:
+            - generic [ref=e345]:
+              - paragraph [ref=e346]: Kebutuhan
+              - paragraph [ref=e347]: Admin masih memindahkan data antar spreadsheet, chat, dan dokumen sehingga proses lambat serta rawan salah input.
+            - generic [ref=e348]:
+              - paragraph [ref=e349]: Solusi
+              - paragraph [ref=e350]: Sistem internal yang mengikuti workflow bisnis, lengkap dengan role user, form validasi, status proses, dan riwayat aktivitas.
+          - generic [ref=e351]:
+            - generic [ref=e352]: Input data satu pintu
+            - generic [ref=e353]: Status pekerjaan transparan
+            - generic [ref=e354]: Proses lebih konsisten
+      - generic [ref=e355]:
+        - generic [ref=e356]:
+          - generic [ref=e359]:
+            - generic [ref=e360]: AI & WhatsApp
+            - generic [ref=e361]: "03"
+          - heading "Customer service kewalahan" [level=3] [ref=e362]
+        - generic [ref=e363]:
+          - generic [ref=e364]:
+            - generic [ref=e365]:
+              - paragraph [ref=e366]: Kebutuhan
+              - paragraph [ref=e367]: Pertanyaan pelanggan berulang masuk dari banyak channel, sementara tim CS perlu tetap fokus pada kasus prioritas.
+            - generic [ref=e368]:
+              - paragraph [ref=e369]: Solusi
+              - paragraph [ref=e370]: AI assistant untuk triage, jawaban FAQ, pengumpulan data awal, dan eskalasi ke tim manusia saat konteksnya sudah lengkap.
+          - generic [ref=e371]:
+            - generic [ref=e372]: Respon awal lebih cepat
+            - generic [ref=e373]: Tiket lebih terstruktur
+            - generic [ref=e374]: CS fokus ke kasus penting
+      - generic [ref=e375]:
+        - generic [ref=e376]:
+          - generic [ref=e379]:
+            - generic [ref=e380]: Dashboard
+            - generic [ref=e381]: "04"
+          - heading "Data bisnis tersebar" [level=3] [ref=e382]
+        - generic [ref=e383]:
+          - generic [ref=e384]:
+            - generic [ref=e385]:
+              - paragraph [ref=e386]: Kebutuhan
+              - paragraph [ref=e387]: Owner dan manajer mengambil keputusan dari laporan terpisah yang tidak selalu sinkron atau mudah dibandingkan.
+            - generic [ref=e388]:
+              - paragraph [ref=e389]: Solusi
+              - paragraph [ref=e390]: Dashboard bisnis yang menggabungkan metrik penting, filter periode, visualisasi tren, dan export laporan sesuai kebutuhan tim.
+          - generic [ref=e391]:
+            - generic [ref=e392]: Insight lebih cepat
+            - generic [ref=e393]: Laporan mudah dibaca
+            - generic [ref=e394]: Keputusan berbasis data
+      - generic [ref=e395]:
+        - generic [ref=e396]:
+          - generic [ref=e399]:
+            - generic [ref=e400]: Workflow
+            - generic [ref=e401]: "05"
+          - heading "Approval terlalu panjang" [level=3] [ref=e402]
+        - generic [ref=e403]:
+          - generic [ref=e404]:
+            - generic [ref=e405]:
+              - paragraph [ref=e406]: Kebutuhan
+              - paragraph [ref=e407]: Permintaan internal sering tertahan karena status, PIC, dan dokumen pendukung tidak terlihat dalam satu alur kerja.
+            - generic [ref=e408]:
+              - paragraph [ref=e409]: Solusi
+              - paragraph [ref=e410]: Workflow approval digital dengan notifikasi, catatan keputusan, lampiran, dan pembagian akses sesuai level persetujuan.
+          - generic [ref=e411]:
+            - generic [ref=e412]: PIC lebih jelas
+            - generic [ref=e413]: Riwayat approval tersimpan
+            - generic [ref=e414]: Bottleneck mudah ditemukan
+      - generic [ref=e415]:
+        - generic [ref=e416]:
+          - generic [ref=e419]:
+            - generic [ref=e420]: Integration
+            - generic [ref=e421]: "06"
+          - heading "Sistem tidak saling terhubung" [level=3] [ref=e422]
+        - generic [ref=e423]:
+          - generic [ref=e424]:
+            - generic [ref=e425]:
+              - paragraph [ref=e426]: Kebutuhan
+              - paragraph [ref=e427]: Payment, inventory, website, dan sistem internal berjalan sendiri-sendiri sehingga data harus direkonsiliasi manual.
+            - generic [ref=e428]:
+              - paragraph [ref=e429]: Solusi
+              - paragraph [ref=e430]: Integrasi API yang menghubungkan tools penting, menyamakan data utama, dan mengurangi pekerjaan copy-paste antar platform.
+          - generic [ref=e431]:
+            - generic [ref=e432]: Data lebih sinkron
+            - generic [ref=e433]: Rekonsiliasi berkurang
+            - generic [ref=e434]: Operasional lebih scalable
+    - generic [ref=e435]:
+      - paragraph [ref=e436]: Punya kebutuhan yang belum ada di daftar? Kami mulai dari problem, proses, dan metrik bisnis sebelum menentukan bentuk teknologinya.
+      - link "Diskusikan use case Anda →" [ref=e437] [cursor=pointer]:
+        - /url: "#contact"
+  - generic [ref=e439]:
+    - generic [ref=e440]:
+      - paragraph [ref=e441]: Kenapa WeTech Studio?
+      - heading "Partner teknologi yang benar-benar peduli dengan bisnis Anda" [level=2] [ref=e442]
+    - generic [ref=e443]:
+      - generic [ref=e444]:
+        - generic [ref=e445]: 🎯
+        - heading "Business-first Approach" [level=3] [ref=e446]
+        - paragraph [ref=e447]: Kami memulai dari tujuan bisnis, bukan dari teknologi. Setiap keputusan teknis punya alasan bisnis yang jelas.
+      - generic [ref=e448]:
+        - generic [ref=e449]: 📐
+        - heading "Clean & Scalable Code" [level=3] [ref=e450]
+        - paragraph [ref=e451]: Kode yang kami tulis bersih, terdokumentasi, dan dirancang untuk tumbuh — bukan sekadar bekerja hari ini.
+      - generic [ref=e452]:
+        - generic [ref=e453]: 🔧
+        - heading "Custom Solution" [level=3] [ref=e454]
+        - paragraph [ref=e455]: Tidak ada template yang dipaksakan. Setiap solusi dirancang khusus sesuai kebutuhan dan proses bisnis Anda.
+      - generic [ref=e456]:
+        - generic [ref=e457]: 🛡️
+        - heading "End-to-End Support" [level=3] [ref=e458]
+        - paragraph [ref=e459]: Dari konsultasi, design, development, hingga maintenance — kami ada di setiap tahap perjalanan digital Anda.
+      - generic [ref=e460]:
+        - generic [ref=e461]: 🚀
+        - heading "Bisa Dikembangkan" [level=3] [ref=e462]
+        - paragraph [ref=e463]: Platform yang kami bangun siap untuk ditambah fitur, integrasi AI, atau dikembangkan menjadi sistem yang lebih besar.
+      - generic [ref=e464]:
+        - generic [ref=e465]: 🤝
+        - heading "Corporate & UMKM Premium" [level=3] [ref=e466]
+        - paragraph [ref=e467]: Pengalaman melayani berbagai skala bisnis dengan standar kualitas yang konsisten dan komunikasi yang transparan.
+  - generic [ref=e470]:
+    - generic [ref=e471]:
+      - paragraph [ref=e472]: Investasi
+      - heading "Transparan dari awal" [level=2] [ref=e473]
+    - generic [ref=e474]:
+      - generic [ref=e475]:
+        - paragraph [ref=e476]: mulai dari
+        - generic [ref=e477]: Rp 3,5 juta
+        - heading "Website" [level=3] [ref=e478]
+        - paragraph [ref=e479]: Company profile & landing page
+      - generic [ref=e480]:
+        - paragraph [ref=e481]: mulai dari
+        - generic [ref=e482]: Rp 15 juta
+        - heading "Custom System" [level=3] [ref=e483]
+        - paragraph [ref=e484]: Web application & dashboard
+      - generic [ref=e485]:
+        - paragraph [ref=e486]: mulai dari
+        - generic [ref=e487]: Rp 7,5 juta
+        - heading "AI Solution" [level=3] [ref=e488]
+        - paragraph [ref=e489]: Chatbot & automation
+      - generic [ref=e490]:
+        - generic [ref=e491]: ENTERPRISE
+        - paragraph [ref=e492]
+        - generic [ref=e493]: By Quotation
+        - heading "Corporate Project" [level=3] [ref=e494]
+        - paragraph [ref=e495]: Sistem enterprise & custom scope
+    - paragraph [ref=e497]:
+      - text: 💡
+      - strong [ref=e498]: "Catatan:"
+      - text: Harga menyesuaikan scope, fitur, integrasi, timeline, dan level support yang dibutuhkan. Hubungi kami untuk estimasi yang tepat.
+  - generic [ref=e500]:
+    - paragraph [ref=e501]: Mulai Sekarang
+    - heading "Ready to Build Your Digital System?" [level=2] [ref=e502]
+    - paragraph [ref=e503]: Diskusikan kebutuhan website, sistem, atau solusi AI untuk bisnis Anda bersama WeTech Studio. Konsultasi pertama gratis.
+    - link "Mulai Konsultasi via WhatsApp" [ref=e504] [cursor=pointer]:
+      - /url: https://wa.me/6281234567890?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20mulai%20konsultasi%20project%20digital
+      - img [ref=e505]
+      - text: Mulai Konsultasi via WhatsApp
+  - generic [ref=e508]:
+    - generic [ref=e509]:
+      - generic [ref=e510]:
+        - generic [ref=e511]:
+          - generic [ref=e512]: W
+          - generic [ref=e513]: WeTechStudio
+        - paragraph [ref=e514]: Digital technology studio di bawah PT WeTech Digital Nusantara. Partner teknologi untuk bisnis yang ingin tumbuh.
+      - generic [ref=e515]:
+        - heading "Layanan" [level=4] [ref=e516]
+        - list [ref=e517]:
+          - listitem [ref=e518]:
+            - link "Company Profile Website" [ref=e519] [cursor=pointer]:
+              - /url: "#services"
+          - listitem [ref=e520]:
+            - link "Landing Page" [ref=e521] [cursor=pointer]:
+              - /url: "#services"
+          - listitem [ref=e522]:
+            - link "Custom Web App" [ref=e523] [cursor=pointer]:
+              - /url: "#services"
+          - listitem [ref=e524]:
+            - link "Dashboard & System" [ref=e525] [cursor=pointer]:
+              - /url: "#services"
+          - listitem [ref=e526]:
+            - link "API Integration" [ref=e527] [cursor=pointer]:
+              - /url: "#services"
+          - listitem [ref=e528]:
+            - link "AI Solution" [ref=e529] [cursor=pointer]:
+              - /url: "#services"
+      - generic [ref=e530]:
+        - heading "Perusahaan" [level=4] [ref=e531]
+        - list [ref=e532]:
+          - listitem [ref=e533]:
+            - link "Tentang Kami" [ref=e534] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e535]:
+            - link "Portfolio" [ref=e536] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e537]:
+            - link "Proses Kerja" [ref=e538] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e539]:
+            - link "Pricing" [ref=e540] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e541]:
+            - link "Blog" [ref=e542] [cursor=pointer]:
+              - /url: "#"
+      - generic [ref=e543]:
+        - heading "Kontak" [level=4] [ref=e544]
+        - generic [ref=e545]:
+          - link "hello@wetech.studio" [ref=e546] [cursor=pointer]:
+            - /url: mailto:hello@wetech.studio
+          - link "WhatsApp" [ref=e547] [cursor=pointer]:
+            - /url: https://wa.me/6281234567890
+          - link "Instagram" [ref=e548] [cursor=pointer]:
+            - /url: "#"
+          - link "LinkedIn" [ref=e549] [cursor=pointer]:
+            - /url: "#"
+    - generic [ref=e550]:
+      - paragraph [ref=e551]: © 2024 WeTech Studio · PT WeTech Digital Nusantara. All rights reserved.
+      - paragraph [ref=e552]: Jakarta, Indonesia

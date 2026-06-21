@@ -1,0 +1,152 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e641]: Jasa Website Company Profile Profesional | WeTech Studio
+  - banner [ref=e642]:
+    - navigation [ref=e643]:
+      - link "W WeTechStudio" [ref=e644] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e645]: W
+        - generic [ref=e646]: WeTechStudio
+      - list [ref=e647]:
+        - listitem [ref=e648]:
+          - link "Layanan" [ref=e649] [cursor=pointer]:
+            - /url: /#services
+        - listitem [ref=e650]:
+          - link "AI Solution" [ref=e651] [cursor=pointer]:
+            - /url: /#ai-solution
+        - listitem [ref=e652]:
+          - link "Use Cases" [ref=e653] [cursor=pointer]:
+            - /url: /#use-cases
+        - listitem [ref=e654]:
+          - link "Pricing" [ref=e655] [cursor=pointer]:
+            - /url: /#pricing
+        - listitem [ref=e656]:
+          - link "Kontak" [ref=e657] [cursor=pointer]:
+            - /url: /#contact
+      - link "Konsultasi Gratis" [ref=e659] [cursor=pointer]:
+        - /url: https://wa.me/6281234567890?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20konsultasi%20project
+  - main [ref=e660]:
+    - generic [ref=e662]:
+      - generic [ref=e663]:
+        - link "Kembali ke layanan" [ref=e664] [cursor=pointer]:
+          - /url: /#services
+          - img [ref=e665]
+          - text: Kembali ke layanan
+        - paragraph [ref=e667]: Web
+        - heading "Website Company Profile" [level=1] [ref=e668]
+        - paragraph [ref=e669]: Website company profile yang menjelaskan brand, layanan, dan keunggulan bisnis dengan struktur konten yang rapi, tampilan premium, dan fondasi SEO yang mudah dirayapi mesin pencari.
+        - generic [ref=e670]:
+          - link "Diskusi via WhatsApp" [ref=e671] [cursor=pointer]:
+            - /url: https://wa.me/6281234567890?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20konsultasi%20project%20digital
+            - text: Diskusi via WhatsApp
+            - img [ref=e672]
+          - link "Lihat kontak" [ref=e674] [cursor=pointer]:
+            - /url: /#contact
+      - complementary [ref=e675]:
+        - paragraph [ref=e676]: Benefit utama
+        - generic [ref=e677]:
+          - generic [ref=e678]:
+            - img [ref=e679]
+            - generic [ref=e682]: Kredibilitas brand meningkat
+          - generic [ref=e683]:
+            - img [ref=e684]
+            - generic [ref=e687]: Struktur informasi lebih jelas
+          - generic [ref=e688]:
+            - img [ref=e689]
+            - generic [ref=e692]: Responsif untuk mobile
+          - generic [ref=e693]:
+            - img [ref=e694]
+            - generic [ref=e697]: Fondasi SEO on-page
+    - generic [ref=e700]:
+      - generic [ref=e701]:
+        - generic [ref=e702]:
+          - paragraph [ref=e703]: Cocok untuk
+          - heading "Kapan layanan ini relevan?" [level=2] [ref=e704]
+        - generic [ref=e705]:
+          - generic [ref=e706]:
+            - img [ref=e707]
+            - generic [ref=e710]: Perusahaan jasa
+          - generic [ref=e711]:
+            - img [ref=e712]
+            - generic [ref=e715]: B2B dan vendor corporate
+          - generic [ref=e716]:
+            - img [ref=e717]
+            - generic [ref=e720]: UMKM yang ingin terlihat profesional
+          - generic [ref=e721]:
+            - img [ref=e722]
+            - generic [ref=e725]: Brand yang butuh kanal informasi resmi
+      - generic [ref=e726]:
+        - generic [ref=e727]:
+          - paragraph [ref=e728]: Output
+          - heading "Apa saja yang disiapkan?" [level=2] [ref=e729]
+        - generic [ref=e730]:
+          - generic [ref=e731]:
+            - img [ref=e732]
+            - generic [ref=e735]: Desain halaman utama dan halaman pendukung
+          - generic [ref=e736]:
+            - img [ref=e737]
+            - generic [ref=e740]: Copy structure untuk profil layanan
+          - generic [ref=e741]:
+            - img [ref=e742]
+            - generic [ref=e745]: Form kontak atau WhatsApp CTA
+          - generic [ref=e746]:
+            - img [ref=e747]
+            - generic [ref=e750]: Setup metadata dasar dan sitemap entry
+    - generic [ref=e752]:
+      - generic [ref=e753]:
+        - paragraph [ref=e754]: Proses
+        - heading "Alur kerja yang terarah dari awal" [level=2] [ref=e755]
+      - generic [ref=e756]:
+        - generic [ref=e757]:
+          - generic [ref=e758]: "01"
+          - paragraph [ref=e759]: Discovery brand dan tujuan website
+        - generic [ref=e760]:
+          - generic [ref=e761]: "02"
+          - paragraph [ref=e762]: Perancangan struktur halaman
+        - generic [ref=e763]:
+          - generic [ref=e764]: "03"
+          - paragraph [ref=e765]: Desain UI dan development
+        - generic [ref=e766]:
+          - generic [ref=e767]: "04"
+          - paragraph [ref=e768]: Review konten, testing, dan launch
+    - generic [ref=e770]:
+      - generic [ref=e771]:
+        - paragraph [ref=e772]: FAQ
+        - heading "Pertanyaan yang sering muncul" [level=2] [ref=e773]
+      - generic [ref=e774]:
+        - group [ref=e775]:
+          - generic "Apakah website company profile bisa disesuaikan dengan identitas brand?" [ref=e776] [cursor=pointer]
+        - group [ref=e777]:
+          - generic "Apakah website langsung SEO-ready?" [ref=e778] [cursor=pointer]
+    - generic [ref=e780]:
+      - generic [ref=e781]:
+        - generic [ref=e782]:
+          - paragraph [ref=e783]: Layanan lain
+          - heading "Bangun ekosistem digital yang saling terhubung" [level=2] [ref=e784]
+        - link "Semua layanan" [ref=e785] [cursor=pointer]:
+          - /url: /#services
+      - generic [ref=e786]:
+        - link "Web Landing Page Halaman kampanye yang fokus pada konversi." [ref=e787] [cursor=pointer]:
+          - /url: /layanan/landing-page
+          - paragraph [ref=e788]: Web
+          - heading "Landing Page" [level=3] [ref=e789]
+          - paragraph [ref=e790]: Halaman kampanye yang fokus pada konversi.
+        - link "App Aplikasi Web Custom Sistem web yang mengikuti proses bisnis Anda." [ref=e791] [cursor=pointer]:
+          - /url: /layanan/aplikasi-web-custom
+          - paragraph [ref=e792]: App
+          - heading "Aplikasi Web Custom" [level=3] [ref=e793]
+          - paragraph [ref=e794]: Sistem web yang mengikuti proses bisnis Anda.
+        - link "System Dashboard & Sistem Manajemen Data dan aktivitas bisnis dalam satu tempat." [ref=e795] [cursor=pointer]:
+          - /url: /layanan/dashboard-sistem-manajemen
+          - paragraph [ref=e796]: System
+          - heading "Dashboard & Sistem Manajemen" [level=3] [ref=e797]
+          - paragraph [ref=e798]: Data dan aktivitas bisnis dalam satu tempat.
+        - link "Integration Integrasi API & Backend Hubungkan sistem agar data tidak bekerja sendiri-sendiri." [ref=e799] [cursor=pointer]:
+          - /url: /layanan/integrasi-api-backend
+          - paragraph [ref=e800]: Integration
+          - heading "Integrasi API & Backend" [level=3] [ref=e801]
+          - paragraph [ref=e802]: Hubungkan sistem agar data tidak bekerja sendiri-sendiri.
+        - link "AI Solusi AI & Otomasi AI praktis untuk workflow dan layanan pelanggan." [ref=e803] [cursor=pointer]:
+          - /url: /layanan/solusi-ai-otomasi
+          - paragraph [ref=e804]: AI
+          - heading "Solusi AI & Otomasi" [level=3] [ref=e805]
+          - paragraph [ref=e806]: AI praktis untuk workflow dan layanan pelanggan.
