@@ -77,7 +77,7 @@ export default function Portfolio() {
           <div>
             <p
               style={{
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.8rem",
                 fontWeight: "600",
                 letterSpacing: "0.12em",
@@ -90,7 +90,7 @@ export default function Portfolio() {
             </p>
             <h2
               style={{
-                fontFamily: "'Sora', sans-serif",
+                fontFamily: "'Satoshi', sans-serif",
                 fontWeight: "800",
                 fontSize: "clamp(2rem, 5vw, 3.5rem)",
                 lineHeight: "1.1",
@@ -116,7 +116,7 @@ export default function Portfolio() {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.9rem",
               color: "var(--text-accent)",
               textDecoration: "none",
@@ -232,7 +232,7 @@ export default function Portfolio() {
                     color: "#fff",
                     fontSize: "0.75rem",
                     fontWeight: "600",
-                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     letterSpacing: "0.05em",
                   }}
                 >
@@ -250,7 +250,7 @@ export default function Portfolio() {
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.75rem" }}>
                   <h3
                     style={{
-                      fontFamily: "'Sora', sans-serif",
+                      fontFamily: "'Satoshi', sans-serif",
                       fontWeight: "700",
                       fontSize: "1.15rem",
                       color: "var(--text-primary)",
@@ -261,7 +261,7 @@ export default function Portfolio() {
                   </h3>
                   <span
                     style={{
-                      fontFamily: "'Sora', sans-serif",
+                      fontFamily: "'Satoshi', sans-serif",
                       fontSize: "0.75rem",
                       color: "var(--text-muted)",
                       fontWeight: "700",
@@ -272,7 +272,7 @@ export default function Portfolio() {
                 </div>
                 <p
                   style={{
-                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "0.875rem",
                     color: "var(--text-muted)",
                     lineHeight: "1.6",
@@ -290,7 +290,7 @@ export default function Portfolio() {
                         borderRadius: "50px",
                         fontSize: "0.75rem",
                         fontWeight: "500",
-                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         background: "var(--bg-muted)",
                         color: "var(--text-secondary)",
                         border: "1px solid var(--border)",

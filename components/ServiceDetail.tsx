@@ -13,7 +13,7 @@ function SectionTitle({ eyebrow, title }: { eyebrow: string; title: string }) {
     <div style={{ marginBottom: "2rem" }}>
       <p
         style={{
-          fontFamily: "'Space Grotesk', sans-serif",
+          fontFamily: "'Inter', sans-serif",
           fontSize: "0.78rem",
           fontWeight: "700",
           letterSpacing: "0.12em",
@@ -26,7 +26,7 @@ function SectionTitle({ eyebrow, title }: { eyebrow: string; title: string }) {
       </p>
       <h2
         style={{
-          fontFamily: "'Sora', sans-serif",
+          fontFamily: "'Satoshi', sans-serif",
           fontWeight: "800",
           fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
           lineHeight: "1.12",
@@ -59,7 +59,7 @@ function PillList({ items }: { items: string[] }) {
           <CheckCircle2 size={18} color="var(--text-accent)" style={{ marginTop: "0.15rem", flexShrink: 0 }} />
           <span
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.94rem",
               lineHeight: "1.6",
               color: "var(--text-secondary)",
@@ -91,7 +91,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
             position: "absolute",
             inset: 0,
             backgroundImage:
-              "linear-gradient(rgba(124,58,237,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.05) 1px, transparent 1px)",
+              "linear-gradient(rgba(13,148,136,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(13,148,136,0.05) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
             pointerEvents: "none",
           }}
@@ -129,7 +129,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
                 alignItems: "center",
                 gap: "0.5rem",
                 color: "var(--text-accent)",
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.9rem",
                 fontWeight: "600",
                 textDecoration: "none",
@@ -148,7 +148,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
                 background: `${service.color}18`,
                 border: `1px solid ${service.color}35`,
                 color: service.color,
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.78rem",
                 fontWeight: "700",
                 letterSpacing: "0.08em",
@@ -159,7 +159,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
             </p>
             <h1
               style={{
-                fontFamily: "'Sora', sans-serif",
+                fontFamily: "'Satoshi', sans-serif",
                 fontWeight: "800",
                 fontSize: "clamp(2.5rem, 6vw, 5rem)",
                 lineHeight: "1.04",
@@ -173,7 +173,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
             </h1>
             <p
               style={{
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "clamp(1rem, 2vw, 1.2rem)",
                 lineHeight: "1.75",
                 color: "var(--text-secondary)",
@@ -198,9 +198,9 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
                   color: "#fff",
                   fontWeight: "700",
                   fontSize: "1rem",
-                  fontFamily: "'Sora', sans-serif",
+                  fontFamily: "'Satoshi', sans-serif",
                   textDecoration: "none",
-                  boxShadow: "0 10px 36px rgba(124,58,237,0.34)",
+                  boxShadow: "0 10px 36px rgba(13,148,136,0.34)",
                 }}
               >
                 Diskusi via WhatsApp
@@ -219,7 +219,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
                   color: "var(--text-primary)",
                   fontWeight: "600",
                   fontSize: "1rem",
-                  fontFamily: "'Sora', sans-serif",
+                  fontFamily: "'Satoshi', sans-serif",
                   textDecoration: "none",
                 }}
               >
@@ -240,7 +240,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
           >
             <p
               style={{
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.78rem",
                 fontWeight: "700",
                 letterSpacing: "0.12em",
@@ -296,14 +296,14 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
                     borderRadius: "50%",
                     background: "var(--gradient-accent)",
                     color: "#fff",
-                    fontFamily: "'Sora', sans-serif",
+                    fontFamily: "'Satoshi', sans-serif",
                     fontWeight: "800",
                     marginBottom: "1rem",
                   }}
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", color: "var(--text-secondary)", lineHeight: "1.65", fontSize: "0.95rem" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", color: "var(--text-secondary)", lineHeight: "1.65", fontSize: "0.95rem" }}>
                   {step}
                 </p>
               </div>
@@ -326,10 +326,10 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
                   background: "var(--bg-surface)",
                 }}
               >
-                <summary style={{ cursor: "pointer", fontFamily: "'Sora', sans-serif", fontWeight: "700", color: "var(--text-primary)" }}>
+                <summary style={{ cursor: "pointer", fontFamily: "'Satoshi', sans-serif", fontWeight: "700", color: "var(--text-primary)" }}>
                   {item.question}
                 </summary>
-                <p style={{ marginTop: "1rem", fontFamily: "'Space Grotesk', sans-serif", color: "var(--text-muted)", lineHeight: "1.7", fontSize: "0.94rem" }}>
+                <p style={{ marginTop: "1rem", fontFamily: "'Inter', sans-serif", color: "var(--text-muted)", lineHeight: "1.7", fontSize: "0.94rem" }}>
                   {item.answer}
                 </p>
               </details>
@@ -338,18 +338,18 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
         </div>
       </section>
 
-      <section style={{ padding: "6rem 1.5rem", background: "linear-gradient(135deg, #060412 0%, #0d0820 42%, #26185f 100%)" }}>
+      <section style={{ padding: "6rem 1.5rem", background: "linear-gradient(135deg, #060412 0%, #021716 42%, #042f2e 100%)" }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
           <div style={{ display: "flex", justifyContent: "space-between", gap: "2rem", alignItems: "flex-end", flexWrap: "wrap", marginBottom: "2rem" }}>
             <div>
-              <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.78rem", fontWeight: "700", letterSpacing: "0.12em", textTransform: "uppercase", color: "#a78bfa", marginBottom: "0.75rem" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", fontWeight: "700", letterSpacing: "0.12em", textTransform: "uppercase", color: "#5eead4", marginBottom: "0.75rem" }}>
                 Layanan lain
               </p>
-              <h2 style={{ fontFamily: "'Sora', sans-serif", fontWeight: "800", fontSize: "clamp(1.8rem, 4vw, 3rem)", color: "#f0eeff", letterSpacing: "-0.03em", lineHeight: "1.1" }}>
+              <h2 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: "800", fontSize: "clamp(1.8rem, 4vw, 3rem)", color: "#f0fdfa", letterSpacing: "-0.03em", lineHeight: "1.1" }}>
                 Bangun ekosistem digital yang saling terhubung
               </h2>
             </div>
-            <Link href="/#services" style={{ color: "#c4b5fd", fontFamily: "'Space Grotesk', sans-serif", fontWeight: "600", textDecoration: "none" }}>
+            <Link href="/#services" style={{ color: "#99f6e4", fontFamily: "'Inter', sans-serif", fontWeight: "600", textDecoration: "none" }}>
               Semua layanan
             </Link>
           </div>
@@ -362,18 +362,18 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
                   display: "block",
                   padding: "1.25rem",
                   borderRadius: "16px",
-                  border: "1px solid rgba(124,58,237,0.28)",
+                  border: "1px solid rgba(13,148,136,0.28)",
                   background: "rgba(19,13,46,0.72)",
                   textDecoration: "none",
                 }}
               >
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", color: item.color, fontSize: "0.75rem", fontWeight: "700", marginBottom: "0.45rem" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", color: item.color, fontSize: "0.75rem", fontWeight: "700", marginBottom: "0.45rem" }}>
                   {item.tag}
                 </p>
-                <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1rem", color: "#f0eeff", fontWeight: "700", marginBottom: "0.5rem" }}>
+                <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "1rem", color: "#f0fdfa", fontWeight: "700", marginBottom: "0.5rem" }}>
                   {item.title}
                 </h3>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#7c6fa0", lineHeight: "1.55", fontSize: "0.86rem" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", color: "#7c6fa0", lineHeight: "1.55", fontSize: "0.86rem" }}>
                   {item.short}
                 </p>
               </Link>

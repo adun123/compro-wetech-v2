@@ -42,7 +42,7 @@ export const services: Service[] = [
     short: "Kehadiran digital yang kredibel untuk bisnis Anda.",
     description:
       "Website company profile yang menjelaskan brand, layanan, dan keunggulan bisnis dengan struktur konten yang rapi, tampilan premium, dan fondasi SEO yang mudah dirayapi mesin pencari.",
-    color: "#7c3aed",
+    color: "#0d9488",
     metadata: {
       title: "Jasa Website Company Profile Profesional",
       description:
@@ -78,7 +78,7 @@ export const services: Service[] = [
     short: "Halaman kampanye yang fokus pada konversi.",
     description:
       "Landing page untuk produk, campaign, atau layanan spesifik dengan alur pesan yang terarah, CTA jelas, dan struktur tracking yang siap membantu evaluasi performa campaign.",
-    color: "#6d28d9",
+    color: "#0f766e",
     metadata: {
       title: "Jasa Landing Page untuk Campaign dan Produk",
       description:
@@ -109,7 +109,7 @@ export const services: Service[] = [
     short: "Sistem web yang mengikuti proses bisnis Anda.",
     description:
       "Aplikasi web custom untuk kebutuhan internal atau pelanggan, dibangun berdasarkan proses bisnis nyata, role pengguna, validasi data, dan alur kerja yang tidak cocok ditangani template umum.",
-    color: "#4c1d95",
+    color: "#115e59",
     metadata: {
       title: "Jasa Pembuatan Aplikasi Web Custom",
       description:
@@ -140,7 +140,7 @@ export const services: Service[] = [
     short: "Data dan aktivitas bisnis dalam satu tempat.",
     description:
       "Dashboard dan sistem manajemen untuk mengumpulkan data penting, memantau status pekerjaan, melihat tren, dan membantu owner atau manajer mengambil keputusan dengan informasi yang lebih terstruktur.",
-    color: "#5b21b6",
+    color: "#0f766e",
     metadata: {
       title: "Jasa Dashboard dan Sistem Manajemen Bisnis",
       description:
@@ -171,7 +171,7 @@ export const services: Service[] = [
     short: "Hubungkan sistem agar data tidak bekerja sendiri-sendiri.",
     description:
       "Integrasi API dan backend untuk menyambungkan website, payment, CRM, ERP, WhatsApp, database, atau layanan pihak ketiga agar proses data lebih sinkron dan pekerjaan manual berkurang.",
-    color: "#3730a3",
+    color: "#134e4a",
     metadata: {
       title: "Jasa Integrasi API dan Backend",
       description:
@@ -202,7 +202,7 @@ export const services: Service[] = [
     short: "AI praktis untuk workflow dan layanan pelanggan.",
     description:
       "Solusi AI dan otomasi yang dirancang untuk use case bisnis nyata seperti triage customer service, pencarian knowledge internal, klasifikasi data, dan workflow berulang yang dapat dibantu sistem.",
-    color: "#7c3aed",
+    color: "#0d9488",
     metadata: {
       title: "Jasa Solusi AI dan Otomasi Bisnis",
       description:

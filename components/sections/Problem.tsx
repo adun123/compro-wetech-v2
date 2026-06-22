@@ -1,4 +1,9 @@
 "use client";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const problems = [
   {
@@ -29,17 +34,77 @@ const problems = [
 ];
 
 export default function Problem() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header animation
+      if (headerRef.current) {
+        gsap.from(headerRef.current.children, {
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+          },
+          y: 60,
+          opacity: 0,
+          stagger: 0.15,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      }
+
+      // Cards: each pinned briefly as they reveal
+      if (cardsRef.current) {
+        const cards = cardsRef.current.querySelectorAll(".problem-card");
+
+        cards.forEach((card, i) => {
+          // Reveal animation
+          gsap.from(card, {
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              end: "top 40%",
+              scrub: 0.5,
+            },
+            x: i % 2 === 0 ? -80 : 80,
+            opacity: 0,
+            scale: 0.95,
+          });
+
+          // Number color shift on scroll
+          const numEl = card.querySelector(".problem-num");
+          if (numEl) {
+            gsap.to(numEl, {
+              scrollTrigger: {
+                trigger: card,
+                start: "top 60%",
+                end: "top 30%",
+                scrub: true,
+              },
+              color: "#14b8a6",
+            });
+          }
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="problem"
       style={{
-        padding: "6rem 1.5rem",
+        padding: "8rem 1.5rem 10rem",
         background: "var(--bg-secondary)",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Decorative */}
+      {/* Decorative top line */}
       <div
         style={{
           position: "absolute",
@@ -47,101 +112,82 @@ export default function Problem() {
           left: 0,
           right: 0,
           height: "1px",
-          background: "linear-gradient(90deg, transparent, var(--accent-bright), transparent)",
-          opacity: 0.4,
+          background: "linear-gradient(90deg, transparent, var(--accent), transparent)",
+          opacity: 0.3,
         }}
       />
 
-      <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "900px", margin: "0 auto" }}>
         {/* Header */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "2rem",
-            marginBottom: "5rem",
-          }}
-        >
-          <div>
-            <p
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontSize: "0.8rem",
-                fontWeight: "600",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "var(--text-accent)",
-                marginBottom: "1rem",
-              }}
-            >
-              Kenali Masalahnya
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Sora', sans-serif",
-                fontWeight: "800",
-                fontSize: "clamp(2rem, 5vw, 3.5rem)",
-                lineHeight: "1.1",
-                letterSpacing: "-0.03em",
-                color: "var(--text-primary)",
-                maxWidth: "700px",
-              }}
-            >
-              Apakah bisnis Anda mengalami{" "}
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #7c3aed, #a78bfa)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                salah satu ini?
-              </span>
-            </h2>
-          </div>
+        <div ref={headerRef} style={{ marginBottom: "5rem", textAlign: "center" }}>
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.8rem",
+              fontWeight: "600",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: "var(--accent)",
+              marginBottom: "1rem",
+            }}
+          >
+            Kenali Masalahnya
+          </p>
+          <h2
+            style={{
+              fontFamily: "'Satoshi', sans-serif",
+              fontWeight: 400,
+              fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
+              lineHeight: "1.1",
+              letterSpacing: "-0.02em",
+              color: "var(--text-primary)",
+            }}
+          >
+            Apakah bisnis Anda mengalami{" "}
+            <span style={{ fontStyle: "italic", color: "var(--accent)" }}>
+              salah satu ini?
+            </span>
+          </h2>
         </div>
 
-        {/* Problem list */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+        {/* Problem cards */}
+        <div ref={cardsRef} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           {problems.map((p) => (
             <div
               key={p.num}
+              className="problem-card"
               style={{
                 display: "grid",
-                gridTemplateColumns: "auto 1fr auto",
-                alignItems: "center",
-                gap: "2rem",
-                padding: "2rem 0",
-                borderTop: "1px solid var(--border)",
+                gridTemplateColumns: "4rem 1fr",
+                gap: "1.5rem",
+                alignItems: "start",
+                padding: "2rem",
+                borderRadius: "12px",
+                border: "1px solid var(--border)",
+                background: "var(--bg-surface)",
+                transition: "border-color 0.3s, box-shadow 0.3s, transform 0.3s",
                 cursor: "default",
-                transition: "all 0.3s",
               }}
               onMouseEnter={(e) => {
-                const el = e.currentTarget;
-                el.style.paddingLeft = "1rem";
-                el.style.background = "var(--bg-surface)";
-                el.style.borderRadius = "12px";
-                el.style.borderColor = "transparent";
+                e.currentTarget.style.borderColor = "var(--accent)";
+                e.currentTarget.style.boxShadow = "0 8px 32px rgba(20,184,166,0.08)";
+                e.currentTarget.style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
-                const el = e.currentTarget;
-                el.style.paddingLeft = "0";
-                el.style.background = "transparent";
-                el.style.borderRadius = "0";
-                el.style.borderColor = "var(--border)";
+                e.currentTarget.style.borderColor = "var(--border)";
+                e.currentTarget.style.boxShadow = "none";
+                e.currentTarget.style.transform = "translateY(0)";
               }}
             >
               {/* Number */}
               <span
+                className="problem-num"
                 style={{
-                  fontFamily: "'Sora', sans-serif",
-                  fontWeight: "800",
-                  fontSize: "clamp(2rem, 4vw, 3rem)",
+                  fontFamily: "'Satoshi', sans-serif",
+                  fontWeight: 400,
+                  fontSize: "2.5rem",
                   color: "var(--border)",
-                  letterSpacing: "-0.04em",
                   lineHeight: "1",
-                  minWidth: "60px",
                   transition: "color 0.3s",
                 }}
               >
@@ -152,9 +198,9 @@ export default function Problem() {
               <div>
                 <h3
                   style={{
-                    fontFamily: "'Sora', sans-serif",
-                    fontWeight: "700",
-                    fontSize: "clamp(1rem, 2vw, 1.35rem)",
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: "600",
+                    fontSize: "1.15rem",
                     color: "var(--text-primary)",
                     marginBottom: "0.5rem",
                     letterSpacing: "-0.01em",
@@ -164,45 +210,17 @@ export default function Problem() {
                 </h3>
                 <p
                   style={{
-                    fontFamily: "'Space Grotesk', sans-serif",
-                    fontSize: "0.95rem",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.9rem",
                     color: "var(--text-muted)",
-                    lineHeight: "1.6",
-                    maxWidth: "600px",
+                    lineHeight: "1.7",
                   }}
                 >
                   {p.desc}
                 </p>
               </div>
-
-              {/* Arrow */}
-              <div
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  border: "1px solid var(--border)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "var(--text-muted)",
-                  flexShrink: 0,
-                  transition: "all 0.3s",
-                }}
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path
-                    d="M3 8h10M9 4l4 4-4 4"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
             </div>
           ))}
-          <div style={{ borderTop: "1px solid var(--border)" }} />
         </div>
       </div>
     </section>

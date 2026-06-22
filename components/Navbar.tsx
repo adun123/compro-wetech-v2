@@ -30,21 +30,37 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 100,
-        transition: "all 0.4s ease",
-        backgroundColor: scrolled ? "rgba(var(--bg-primary-rgb, 6,4,18), 0.92)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
+        display: "flex",
+        justifyContent: "center",
+        padding: scrolled ? "0.75rem 1rem" : "1.25rem 1rem",
+        transition: "padding 0.4s ease",
+        pointerEvents: "none",
       }}
     >
+      {/* Dynamic Island container */}
       <nav
+        className="dynamic-island"
         style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "0 1.5rem",
+          pointerEvents: "auto",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          height: "72px",
+          gap: "1.5rem",
+          padding: scrolled ? "0.5rem 0.75rem 0.5rem 1rem" : "0.6rem 1rem 0.6rem 1.25rem",
+          borderRadius: "999px",
+          background: scrolled
+            ? "var(--nav-bg-scrolled, rgba(255,255,255,0.95))"
+            : "var(--nav-bg, rgba(255,255,255,0.85))",
+          backdropFilter: "blur(20px) saturate(1.5)",
+          WebkitBackdropFilter: "blur(20px) saturate(1.5)",
+          border: scrolled
+            ? "1px solid var(--nav-border, rgba(0,0,0,0.08))"
+            : "1px solid var(--nav-border-idle, rgba(0,0,0,0.05))",
+          boxShadow: scrolled
+            ? "0 8px 32px rgba(0,0,0,0.12)"
+            : "0 4px 16px rgba(0,0,0,0.06)",
+          transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+          maxWidth: "fit-content",
         }}
       >
         {/* Logo */}
@@ -54,48 +70,31 @@ export default function Navbar() {
             display: "flex",
             alignItems: "center",
             textDecoration: "none",
-            minWidth: 0,
+            flexShrink: 0,
           }}
         >
-          <div
-            className="logo-mark"
-            
-          >
-            <Image
-              src="/logo-text.png"
-              alt="WeTech Studio logo"
-              width={1536}
-              height={1024}
-              priority
-              style={{
-                width: "240px",
-                height: "auto",
-                display: "block",
-                objectFit: "contain",
-                flexShrink: 0,
-              }}
-            />
-          </div>
-          {/* <span
-            className="logo-text"
+          <Image
+            src="/logo-text.png"
+            alt="WeTech Studio logo"
+            width={1536}
+            height={1024}
+            priority
+            className="nav-logo"
             style={{
-              fontFamily: "'Sora', sans-serif",
-              fontWeight: "800",
-              fontSize: "1.6rem",
-              color: "var(--text-primary)",
-              letterSpacing: "-0.04em",
+              width: "auto",
+              height: "28px",
+              display: "block",
+              objectFit: "contain",
             }}
-          >
-            WeTech<span style={{ color: "var(--accent-bright)" }}>Studio</span>
-          </span> */}
+          />
         </Link>
 
-        {/* Desktop Nav */}
+        {/* Desktop Nav Links */}
         <ul
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "2rem",
+            gap: "1.5rem",
             listStyle: "none",
             margin: 0,
             padding: 0,
@@ -107,15 +106,16 @@ export default function Navbar() {
               <Link
                 href={link.href}
                 style={{
-                  color: "var(--text-secondary)",
+                  color: "var(--nav-text)",
                   textDecoration: "none",
-                  fontSize: "0.9rem",
+                  fontSize: "0.82rem",
                   fontWeight: "500",
-                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   transition: "color 0.2s",
+                  whiteSpace: "nowrap",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-accent)")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--nav-text)")}
               >
                 {link.label}
               </Link>
@@ -123,36 +123,36 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA */}
-        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }} className="hidden-mobile">
-          <a
-            href="https://wa.me/6287877946981?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20konsultasi%20project"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              padding: "0.55rem 1.4rem",
-              borderRadius: "50px",
-              background: "linear-gradient(135deg, #26185f, #7c3aed)",
-              color: "#fff",
-              fontWeight: "600",
-              fontSize: "0.875rem",
-              fontFamily: "'Sora', sans-serif",
-              textDecoration: "none",
-              transition: "opacity 0.2s, transform 0.2s",
-              display: "inline-block",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.opacity = "0.85";
-              e.currentTarget.style.transform = "translateY(-1px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.opacity = "1";
-              e.currentTarget.style.transform = "translateY(0)";
-            }}
-          >
-            Konsultasi Gratis
-          </a>
-        </div>
+        {/* CTA Button */}
+        <a
+          href="https://wa.me/6287877946981?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20konsultasi%20project"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden-mobile"
+          style={{
+            padding: "0.45rem 1.1rem",
+            borderRadius: "999px",
+            background: "linear-gradient(135deg, #042f2e, #0d9488)",
+            color: "#fff",
+            fontWeight: "600",
+            fontSize: "0.8rem",
+            fontFamily: "'Satoshi', sans-serif",
+            textDecoration: "none",
+            transition: "opacity 0.2s, transform 0.2s",
+            whiteSpace: "nowrap",
+            flexShrink: 0,
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.opacity = "0.85";
+            e.currentTarget.style.transform = "scale(1.03)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.opacity = "1";
+            e.currentTarget.style.transform = "scale(1)";
+          }}
+        >
+          Konsultasi Gratis
+        </a>
 
         {/* Mobile Menu Button */}
         <button
@@ -161,26 +161,40 @@ export default function Navbar() {
             background: "none",
             border: "none",
             cursor: "pointer",
-            color: "var(--text-primary)",
-            padding: "0.5rem",
+            color: "var(--nav-text)",
+            padding: "0.4rem",
+            display: "flex",
+            alignItems: "center",
           }}
           className="show-mobile"
           aria-label="Toggle menu"
         >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown */}
       {menuOpen && (
         <div
           style={{
-            background: "var(--bg-surface)",
-            borderTop: "1px solid var(--border)",
-            padding: "1.5rem",
+            pointerEvents: "auto",
+            position: "absolute",
+            top: "calc(100%)",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "calc(100% - 2rem)",
+            maxWidth: "360px",
+            borderRadius: "20px",
+            background: "rgba(var(--bg-primary-rgb, 6,4,18), 0.95)",
+            backdropFilter: "blur(24px) saturate(1.4)",
+            WebkitBackdropFilter: "blur(24px) saturate(1.4)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            boxShadow: "0 16px 48px rgba(0,0,0,0.5)",
+            padding: "1.25rem 1.5rem",
+            animation: "islandExpand 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
-          <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "0.25rem" }}>
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
@@ -189,33 +203,37 @@ export default function Navbar() {
                   style={{
                     color: "var(--text-secondary)",
                     textDecoration: "none",
-                    fontSize: "1rem",
+                    fontSize: "0.95rem",
                     fontWeight: "500",
-                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     display: "block",
-                    padding: "0.5rem 0",
+                    padding: "0.6rem 0.75rem",
+                    borderRadius: "10px",
+                    transition: "background 0.2s",
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.05)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
-            <li>
+            <li style={{ marginTop: "0.5rem" }}>
               <a
                 href="https://wa.me/6287877946981?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20konsultasi%20project"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
                   display: "block",
-                  padding: "0.75rem 1.5rem",
-                  borderRadius: "50px",
-                  background: "linear-gradient(135deg, #26185f, #7c3aed)",
+                  padding: "0.7rem 1.5rem",
+                  borderRadius: "999px",
+                  background: "linear-gradient(135deg, #042f2e, #0d9488)",
                   color: "#fff",
                   fontWeight: "600",
                   textAlign: "center",
                   textDecoration: "none",
-                  fontFamily: "'Sora', sans-serif",
-                  marginTop: "0.5rem",
+                  fontFamily: "'Satoshi', sans-serif",
+                  fontSize: "0.9rem",
                 }}
               >
                 Konsultasi Gratis
@@ -226,35 +244,24 @@ export default function Navbar() {
       )}
 
       <style>{`
+        @keyframes islandExpand {
+          from {
+            opacity: 0;
+            transform: translateX(-50%) scale(0.95) translateY(-8px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(-50%) scale(1) translateY(0);
+          }
+        }
         @media (min-width: 768px) {
           .hidden-mobile { display: flex !important; }
           .show-mobile { display: none !important; }
         }
         @media (max-width: 767px) {
-          .hidden-mobile {
-            display: none !important;
-          }
-
-          .show-mobile {
-            display: block !important;
-          }
-
-          .logo-mark {
-            width: auto !important;
-            height: auto !important;
-            border-radius: 0 !important;
-            background: transparent !important;
-          }
-
-           nav {
-              padding-left: 0.7rem !important;
-              padding-right: 1rem !important;
-            }
-
-            .logo-mark img {
-              width: 180px !important;
-              margin-left: -6px;
-            }
+          .hidden-mobile { display: none !important; }
+          .show-mobile { display: flex !important; }
+          .nav-logo { height: 22px !important; }
         }
       `}</style>
     </header>

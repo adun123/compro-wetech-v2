@@ -1,183 +1,235 @@
 "use client";
-import type { LucideIcon } from "lucide-react";
-import { Handshake, Ruler, Target, Zap } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Compass, Code2, Rocket, ShieldCheck } from "lucide-react";
 
-const pillars: Array<{ icon: LucideIcon; title: string; desc: string }> = [
-  { icon: Zap, title: "Functional", desc: "Solusi yang benar-benar bekerja sesuai kebutuhan bisnis nyata." },
-  { icon: Ruler, title: "Scalable", desc: "Dibangun untuk tumbuh bersama bisnis Anda, tidak perlu rebuild dari nol." },
-  { icon: Target, title: "Strategic", desc: "Setiap keputusan teknis didasarkan pada tujuan bisnis yang jelas." },
-  { icon: Handshake, title: "Supportive", desc: "End-to-end support dari konsultasi hingga setelah launch." },
+gsap.registerPlugin(ScrollTrigger);
+
+const steps = [
+  { icon: Compass, num: "01", title: "Discovery & Strategy", desc: "Memahami bisnis, tujuan, dan merancang arsitektur solusi." },
+  { icon: Code2, num: "02", title: "Design & Development", desc: "UI/UX premium + development iteratif dengan update rutin." },
+  { icon: Rocket, num: "03", title: "Testing & Launch", desc: "QA menyeluruh, deployment aman, monitoring saat go-live." },
+  { icon: ShieldCheck, num: "04", title: "Support & Growth", desc: "Maintenance, pengembangan fitur, dan support berkelanjutan." },
 ];
 
 export default function Solution() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const stepsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Steps timeline animation
+      if (stepsRef.current) {
+        const items = stepsRef.current.querySelectorAll(".step-item");
+        const line = stepsRef.current.querySelector(".step-line-fill");
+
+        // Line draws as you scroll
+        if (line) {
+          gsap.fromTo(line, { scaleY: 0 }, {
+            scaleY: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: stepsRef.current,
+              start: "top 60%",
+              end: "bottom 60%",
+              scrub: 0.8,
+            },
+          });
+        }
+
+        items.forEach((item, i) => {
+          gsap.from(item, {
+            scrollTrigger: {
+              trigger: item,
+              start: "top 80%",
+            },
+            x: -40,
+            opacity: 0,
+            duration: 0.6,
+            delay: i * 0.1,
+            ease: "power2.out",
+          });
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="solution"
       style={{
         padding: "8rem 1.5rem",
         position: "relative",
         overflow: "hidden",
-        background: "linear-gradient(135deg, #26185f 0%, #1a0a4a 40%, #0d0820 100%)",
+        background: "linear-gradient(135deg, #042f2e 0%, #052e2b 40%, #021716 100%)",
       }}
     >
-      {/* Mesh overlay */}
+      {/* Grid lines background */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           backgroundImage: `
-            radial-gradient(ellipse at 20% 50%, rgba(124,58,237,0.2) 0%, transparent 60%),
-            radial-gradient(ellipse at 80% 20%, rgba(96,165,250,0.1) 0%, transparent 50%)
-          `,
-          pointerEvents: "none",
-        }}
-      />
-
-      {/* Grid lines */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `
-            linear-gradient(rgba(124,58,237,0.06) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(124,58,237,0.06) 1px, transparent 1px)
+            linear-gradient(rgba(13,148,136,0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(13,148,136,0.05) 1px, transparent 1px)
           `,
           backgroundSize: "60px 60px",
           pointerEvents: "none",
         }}
       />
 
-      <div
-        style={{
-          position: "relative",
-          zIndex: 10,
-          maxWidth: "1280px",
-          margin: "0 auto",
-        }}
-      >
-        {/* Label */}
-        <p
-          style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-            fontSize: "0.8rem",
-            fontWeight: "600",
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: "#a78bfa",
-            marginBottom: "2rem",
-            textAlign: "center",
-          }}
-        >
-          Solusi Kami
-        </p>
-
-        {/* Bold statement */}
-        <div style={{ maxWidth: "960px", margin: "0 auto", textAlign: "center" }}>
-          <h2
-            style={{
-              fontFamily: "'Sora', sans-serif",
-              fontWeight: "800",
-              fontSize: "clamp(2rem, 5.5vw, 4.5rem)",
-              lineHeight: "1.1",
-              letterSpacing: "-0.03em",
-              color: "#f0eeff",
-              marginBottom: "2.5rem",
-            }}
-          >
-            WeTech Studio hadir sebagai{" "}
-            <em
-              style={{
-                fontStyle: "normal",
-                background: "linear-gradient(135deg, #a78bfa, #60a5fa)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              technology partner
-            </em>{" "}
-            yang mengubah kebutuhan bisnis menjadi solusi digital yang fungsional,
-            scalable, dan mudah digunakan.
-          </h2>
-
+      <div style={{ position: "relative", zIndex: 10, maxWidth: "960px", margin: "0 auto" }}>
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
           <p
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "clamp(1rem, 1.8vw, 1.2rem)",
-              lineHeight: "1.7",
-              color: "#c4b5fd",
-              marginBottom: "3rem",
-              maxWidth: "700px",
-              margin: "0 auto 3rem",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.8rem",
+              fontWeight: "600",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: "#5eead4",
+              marginBottom: "1rem",
             }}
           >
-            Kami tidak hanya membangun produk digital — kami memahami bisnis Anda,
-            merancang solusi yang tepat, dan memastikan teknologi yang kami bangun
-            benar-benar bekerja untuk pertumbuhan Anda.
+            Solusi Kami
+          </p>
+          <h2
+            style={{
+              fontFamily: "'Satoshi', sans-serif",
+              fontWeight: 400,
+              fontSize: "clamp(2.2rem, 5vw, 4rem)",
+              lineHeight: "1.15",
+              letterSpacing: "-0.02em",
+              color: "#f0fdfa",
+              marginBottom: "1.5rem",
+            }}
+          >
+            Technology partner yang mengubah kebutuhan bisnis menjadi{" "}
+            <span style={{ fontStyle: "italic", color: "#5eead4" }}>solusi digital nyata</span>
+          </h2>
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1.05rem",
+              lineHeight: "1.7",
+              color: "#99f6e4",
+              maxWidth: "650px",
+              margin: "0 auto",
+            }}
+          >
+            Kami memahami bisnis Anda, merancang solusi yang tepat, dan memastikan
+            teknologi yang kami bangun benar-benar bekerja untuk pertumbuhan Anda.
           </p>
         </div>
 
-        {/* Value pillars */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: "1.5rem",
-            marginTop: "4rem",
-          }}
-        >
-          {pillars.map((pillar) => {
-            const Icon = pillar.icon;
+        {/* 4-step workflow */}
+        <div ref={stepsRef} style={{ position: "relative", paddingLeft: "2.5rem" }}>
+          {/* Vertical line */}
+          <div
+            style={{
+              position: "absolute",
+              left: "0.75rem",
+              top: 0,
+              bottom: 0,
+              width: "2px",
+              background: "rgba(13,148,136,0.2)",
+              borderRadius: "1px",
+            }}
+          >
+            <div
+              className="step-line-fill"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: "100%",
+                background: "linear-gradient(180deg, #0d9488, #5eead4)",
+                borderRadius: "1px",
+                transformOrigin: "top",
+              }}
+            />
+          </div>
 
-            return (
-              <div
-                key={pillar.title}
-                style={{
-                  padding: "2rem",
-                  borderRadius: "16px",
-                  border: "1px solid rgba(124,58,237,0.3)",
-                  background: "rgba(19,13,46,0.6)",
-                  backdropFilter: "blur(10px)",
-                  transition: "all 0.3s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(167,139,250,0.6)";
-                  e.currentTarget.style.background = "rgba(38,24,95,0.7)";
-                  e.currentTarget.style.transform = "translateY(-4px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(124,58,237,0.3)";
-                  e.currentTarget.style.background = "rgba(19,13,46,0.6)";
-                  e.currentTarget.style.transform = "translateY(0)";
-                }}
-              >
-                <div style={{ color: "var(--text-accent)", marginBottom: "1rem" }}>
-                  <Icon size={32} strokeWidth={1.75} />
+          {/* Steps */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+            {steps.map((step) => {
+              const Icon = step.icon;
+              return (
+                <div
+                  key={step.num}
+                  className="step-item"
+                  style={{
+                    display: "flex",
+                    gap: "1.25rem",
+                    alignItems: "flex-start",
+                    padding: "1.5rem",
+                    borderRadius: "12px",
+                    border: "1px solid rgba(13,148,136,0.2)",
+                    background: "rgba(19,13,46,0.5)",
+                    backdropFilter: "blur(8px)",
+                    transition: "border-color 0.3s, transform 0.3s",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(94,234,212,0.5)";
+                    e.currentTarget.style.transform = "translateX(4px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(13,148,136,0.2)";
+                    e.currentTarget.style.transform = "translateX(0)";
+                  }}
+                >
+                  {/* Icon */}
+                  <div
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      borderRadius: "10px",
+                      background: "rgba(13,148,136,0.15)",
+                      border: "1px solid rgba(13,148,136,0.3)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#5eead4",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <Icon size={20} strokeWidth={1.8} />
+                  </div>
+
+                  {/* Content */}
+                  <div>
+                    <h3
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: "600",
+                        fontSize: "1.1rem",
+                        color: "#f0fdfa",
+                        marginBottom: "0.3rem",
+                      }}
+                    >
+                      {step.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.88rem",
+                        color: "#5a8a85",
+                        lineHeight: "1.6",
+                      }}
+                    >
+                      {step.desc}
+                    </p>
+                  </div>
                 </div>
-                <h3
-                  style={{
-                    fontFamily: "'Sora', sans-serif",
-                    fontWeight: "700",
-                    fontSize: "1.1rem",
-                    color: "#f0eeff",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  {pillar.title}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: "'Space Grotesk', sans-serif",
-                    fontSize: "0.9rem",
-                    color: "#7c6fa0",
-                    lineHeight: "1.6",
-                  }}
-                >
-                  {pillar.desc}
-                </p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

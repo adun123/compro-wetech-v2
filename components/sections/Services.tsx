@@ -1,280 +1,249 @@
 "use client";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/lib/services";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Services() {
-  const [activeIdx, setActiveIdx] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      const scrollWidth = track.scrollWidth - window.innerWidth;
+
+      gsap.to(track, {
+        x: -scrollWidth,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${scrollWidth}`,
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+    });
+
+    return () => mm.revert();
+  }, []);
 
   return (
     <section
+      ref={sectionRef}
       id="services"
       style={{
-        padding: "7rem 1.5rem",
         background: "var(--bg-primary)",
-        position: "relative",
         overflow: "hidden",
+        position: "relative",
       }}
     >
+      {/* Header - fixed at top during scroll */}
       <div
         style={{
-          position: "absolute",
-          top: "30%",
-          right: "-200px",
-          width: "500px",
-          height: "500px",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, var(--accent-glow) 0%, transparent 70%)",
-          filter: "blur(60px)",
-          pointerEvents: "none",
+          padding: "4rem 2rem 2rem",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-end",
+          flexWrap: "wrap",
+          gap: "1rem",
+          maxWidth: "1400px",
+          margin: "0 auto",
         }}
-      />
-
-      <div style={{ maxWidth: "1280px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-        {/* Header */}
-        <div style={{ marginBottom: "4rem" }}>
+      >
+        <div>
           <p
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.8rem",
               fontWeight: "600",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
-              color: "var(--text-accent)",
-              marginBottom: "1rem",
+              color: "var(--accent)",
+              marginBottom: "0.75rem",
             }}
           >
             Layanan Kami
           </p>
           <h2
             style={{
-              fontFamily: "'Sora', sans-serif",
-              fontWeight: "800",
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontFamily: "'Satoshi', sans-serif",
+              fontWeight: 400,
+              fontSize: "clamp(2rem, 4vw, 3.2rem)",
               lineHeight: "1.1",
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.02em",
               color: "var(--text-primary)",
-              maxWidth: "600px",
             }}
           >
-            Solusi digital lengkap untuk setiap{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #7c3aed, #a78bfa)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              kebutuhan bisnis
-            </span>
+            Solusi digital untuk setiap{" "}
+            <span style={{ fontStyle: "italic", color: "var(--accent)" }}>kebutuhan bisnis</span>
           </h2>
         </div>
-
-        {/* Service interactive list */}
-        <div
+        <p
           style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "0",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.85rem",
+            color: "var(--text-muted)",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
           }}
-          className="services-grid"
+          className="hidden-mobile-services"
         >
-          {/* Service list */}
-          <div>
-            {services.map((s, i) => (
-              <div
-                key={s.id}
-                onClick={() => setActiveIdx(i)}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                  padding: "1.75rem 1.5rem",
-                  borderBottom: "1px solid var(--border)",
-                  cursor: "pointer",
-                  background: activeIdx === i ? "var(--bg-surface)" : "transparent",
-                  borderRadius: activeIdx === i ? "12px" : "0",
-                  borderLeft: activeIdx === i ? `3px solid ${s.color}` : "3px solid transparent",
-                  transition: "all 0.25s",
-                  marginBottom: activeIdx === i ? "2px" : "0",
-                }}
-              >
-                <div style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", flex: 1 }}>
-                  <span
-                    style={{
-                      fontFamily: "'Sora', sans-serif",
-                      fontWeight: "700",
-                      fontSize: "0.8rem",
-                      color: activeIdx === i ? s.color : "var(--text-muted)",
-                      paddingTop: "4px",
-                      minWidth: "28px",
-                    }}
-                  >
-                    {s.id}
-                  </span>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.3rem" }}>
-                      <h3
-                        style={{
-                          fontFamily: "'Sora', sans-serif",
-                          fontWeight: "700",
-                          fontSize: "clamp(0.95rem, 1.8vw, 1.1rem)",
-                          color: "var(--text-primary)",
-                          letterSpacing: "-0.01em",
-                        }}
-                      >
-                          {s.title}
-                      </h3>
-                      <span
-                        style={{
-                          padding: "0.15rem 0.6rem",
-                          borderRadius: "50px",
-                          fontSize: "0.7rem",
-                          fontWeight: "600",
-                          fontFamily: "'Space Grotesk', sans-serif",
-                          background: activeIdx === i ? `${s.color}20` : "var(--bg-muted)",
-                          color: activeIdx === i ? s.color : "var(--text-muted)",
-                          border: `1px solid ${activeIdx === i ? `${s.color}40` : "var(--border)"}`,
-                          letterSpacing: "0.05em",
-                        }}
-                      >
-                        {s.tag}
-                      </span>
-                    </div>
-                    <p
-                      style={{
-                        fontFamily: "'Space Grotesk', sans-serif",
-                        fontSize: "0.9rem",
-                        color: "var(--text-muted)",
-                        lineHeight: "1.5",
-                      }}
-                    >
-                          {s.short}
-                    </p>
+          Scroll untuk explore →
+        </p>
+      </div>
 
-                    {/* Expanded content inline for mobile */}
-                    {activeIdx === i && (
-                      <div
-                        style={{
-                          marginTop: "1rem",
-                          paddingTop: "1rem",
-                          borderTop: `1px solid ${s.color}30`,
-                        }}
-                        className="service-expanded"
-                      >
-                        <p
-                          style={{
-                            fontFamily: "'Space Grotesk', sans-serif",
-                            fontSize: "0.9rem",
-                            color: "var(--text-secondary)",
-                            lineHeight: "1.7",
-                            marginBottom: "1rem",
-                          }}
-                        >
-                          {s.description}
-                        </p>
-                        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-                          {s.benefits.map((b) => (
-                            <span
-                              key={b}
-                              style={{
-                                padding: "0.3rem 0.8rem",
-                                borderRadius: "50px",
-                                fontSize: "0.78rem",
-                                fontWeight: "500",
-                                fontFamily: "'Space Grotesk', sans-serif",
-                                background: `${s.color}15`,
-                                color: s.color,
-                                border: `1px solid ${s.color}30`,
-                              }}
-                            >
-                              {b}
-                            </span>
-                          ))}
-                        </div>
-                        <Link
-                          href={s.path}
-                          style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "0.4rem",
-                            marginTop: "1rem",
-                            color: s.color,
-                            fontFamily: "'Space Grotesk', sans-serif",
-                            fontSize: "0.86rem",
-                            fontWeight: "700",
-                            textDecoration: "none",
-                          }}
-                        >
-                          Detail layanan
-                          <ArrowRight size={14} />
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <Link
-                  href={s.path}
-                  aria-label={`Buka detail ${s.title}`}
-                  onClick={(event) => event.stopPropagation()}
-                  style={{
-                    color: activeIdx === i ? s.color : "var(--text-muted)",
-                    transform: activeIdx === i ? "rotate(45deg)" : "none",
-                    transition: "all 0.25s",
-                    marginTop: "2px",
-                    flexShrink: 0,
-                    display: "inline-flex",
-                    textDecoration: "none",
-                  }}
-                >
-                  <ArrowRight size={18} />
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div style={{ marginTop: "3rem", textAlign: "center" }}>
-          <a
-            href="https://wa.me/6281234567890?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20konsultasi%20project"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Horizontal track */}
+      <div
+        ref={trackRef}
+        className="services-track"
+        style={{
+          display: "flex",
+          gap: "1.5rem",
+          padding: "2rem 2rem 4rem",
+          width: "fit-content",
+        }}
+      >
+        {services.map((s) => (
+          <div
+            key={s.id}
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              padding: "0.875rem 2rem",
-              borderRadius: "50px",
-              background: "linear-gradient(135deg, #26185f, #7c3aed)",
-              color: "#fff",
-              fontWeight: "600",
-              fontSize: "0.95rem",
-              fontFamily: "'Sora', sans-serif",
-              textDecoration: "none",
-              transition: "all 0.2s",
+              width: "380px",
+              minWidth: "380px",
+              maxHeight: "calc(100vh - 180px)",
+              padding: "2rem",
+              borderRadius: "16px",
+              border: "1px solid var(--border)",
+              background: "var(--bg-surface)",
+              display: "flex",
+              flexDirection: "column",
+              transition: "border-color 0.3s, transform 0.3s, box-shadow 0.3s",
+              cursor: "default",
+              overflowY: "auto",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 8px 30px rgba(124,58,237,0.4)";
+              e.currentTarget.style.borderColor = s.color;
+              e.currentTarget.style.transform = "translateY(-4px)";
+              e.currentTarget.style.boxShadow = `0 12px 40px ${s.color}15`;
             }}
             onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "var(--border)";
               e.currentTarget.style.transform = "translateY(0)";
               e.currentTarget.style.boxShadow = "none";
             }}
           >
-            Diskusikan Kebutuhan Anda
-            <ArrowRight size={16} />
-          </a>
-        </div>
+            {/* Tag + Detail link */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
+              <span
+                style={{
+                  padding: "0.25rem 0.7rem",
+                  borderRadius: "50px",
+                  fontSize: "0.7rem",
+                  fontWeight: "600",
+                  fontFamily: "'Inter', sans-serif",
+                  background: `${s.color}15`,
+                  color: s.color,
+                  border: `1px solid ${s.color}30`,
+                }}
+              >
+                {s.tag}
+              </span>
+              <Link
+                href={s.path}
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.75rem",
+                  fontWeight: "600",
+                  color: s.color,
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.3rem",
+                  transition: "gap 0.2s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.gap = "0.5rem")}
+                onMouseLeave={(e) => (e.currentTarget.style.gap = "0.3rem")}
+              >
+                Detail <ArrowRight size={12} />
+              </Link>
+            </div>
+
+            {/* Title + Description */}
+            <h3
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: "600",
+                fontSize: "1.25rem",
+                color: "var(--text-primary)",
+                marginBottom: "0.5rem",
+                letterSpacing: "-0.01em",
+              }}
+            >
+              {s.title}
+            </h3>
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.88rem",
+                color: "var(--text-muted)",
+                lineHeight: "1.7",
+                marginBottom: "1.5rem",
+                flex: 1,
+              }}
+            >
+              {s.description}
+            </p>
+
+            {/* Benefits */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginBottom: "1.5rem" }}>
+              {s.benefits.slice(0, 3).map((b) => (
+                <span
+                  key={b}
+                  style={{
+                    padding: "0.2rem 0.6rem",
+                    borderRadius: "50px",
+                    fontSize: "0.72rem",
+                    fontFamily: "'Inter', sans-serif",
+                    background: "var(--bg-muted)",
+                    color: "var(--text-secondary)",
+                    border: "1px solid var(--border)",
+                  }}
+                >
+                  {b}
+                </span>
+              ))}
+            </div>
+
+          </div>
+        ))}
       </div>
 
       <style>{`
         @media (max-width: 767px) {
-          .service-expanded { display: block; }
+          .services-track {
+            flex-direction: column !important;
+            width: 100% !important;
+            padding: 1.5rem !important;
+          }
+          .services-track > div {
+            width: 100% !important;
+            min-width: 100% !important;
+          }
+          .hidden-mobile-services {
+            display: none !important;
+          }
         }
       `}</style>
     </section>

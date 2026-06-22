@@ -42,7 +42,7 @@ export default function Workflow() {
         <div style={{ textAlign: "center", marginBottom: "5rem" }}>
           <p
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.8rem",
               fontWeight: "600",
               letterSpacing: "0.12em",
@@ -55,7 +55,7 @@ export default function Workflow() {
           </p>
           <h2
             style={{
-              fontFamily: "'Sora', sans-serif",
+              fontFamily: "'Satoshi', sans-serif",
               fontWeight: "800",
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
               lineHeight: "1.1",
@@ -144,7 +144,7 @@ export default function Workflow() {
                   <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
                     <span
                       style={{
-                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "0.75rem",
                         fontWeight: "700",
                         color: "var(--text-accent)",
@@ -155,7 +155,7 @@ export default function Workflow() {
                     </span>
                     <h3
                       style={{
-                        fontFamily: "'Sora', sans-serif",
+                        fontFamily: "'Satoshi', sans-serif",
                         fontWeight: "700",
                         fontSize: "1.2rem",
                         color: "var(--text-primary)",
@@ -167,7 +167,7 @@ export default function Workflow() {
                   </div>
                   <p
                     style={{
-                      fontFamily: "'Space Grotesk', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "0.95rem",
                       color: "var(--text-muted)",
                       lineHeight: "1.6",

@@ -126,7 +126,7 @@ export default function UseCases() {
           <div style={{ maxWidth: "760px" }}>
             <p
               style={{
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.8rem",
                 fontWeight: "600",
                 letterSpacing: "0.12em",
@@ -139,7 +139,7 @@ export default function UseCases() {
             </p>
             <h2
               style={{
-                fontFamily: "'Sora', sans-serif",
+                fontFamily: "'Satoshi', sans-serif",
                 fontWeight: "800",
                 fontSize: "clamp(2rem, 5vw, 3.5rem)",
                 lineHeight: "1.1",
@@ -162,7 +162,7 @@ export default function UseCases() {
           </div>
           <p
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.95rem",
               color: "var(--text-secondary)",
               lineHeight: "1.7",
@@ -246,7 +246,7 @@ export default function UseCases() {
                       color: "#fff",
                       fontSize: "0.75rem",
                       fontWeight: "600",
-                      fontFamily: "'Space Grotesk', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       letterSpacing: "0.05em",
                     }}
                   >
@@ -254,7 +254,7 @@ export default function UseCases() {
                   </span>
                   <span
                     style={{
-                      fontFamily: "'Sora', sans-serif",
+                      fontFamily: "'Satoshi', sans-serif",
                       fontSize: "0.8rem",
                       color: "rgba(255,255,255,0.7)",
                       fontWeight: "800",
@@ -268,7 +268,7 @@ export default function UseCases() {
                   style={{
                     position: "relative",
                     zIndex: 2,
-                    fontFamily: "'Sora', sans-serif",
+                    fontFamily: "'Satoshi', sans-serif",
                     fontWeight: "800",
                     fontSize: "clamp(1.25rem, 2.4vw, 1.6rem)",
                     color: "#f0eeff",
@@ -286,7 +286,7 @@ export default function UseCases() {
                   <div>
                     <p
                       style={{
-                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "0.72rem",
                         fontWeight: "700",
                         letterSpacing: "0.1em",
@@ -299,7 +299,7 @@ export default function UseCases() {
                     </p>
                     <p
                       style={{
-                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "0.875rem",
                         color: "var(--text-muted)",
                         lineHeight: "1.6",
@@ -311,7 +311,7 @@ export default function UseCases() {
                   <div>
                     <p
                       style={{
-                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "0.72rem",
                         fontWeight: "700",
                         letterSpacing: "0.1em",
@@ -324,7 +324,7 @@ export default function UseCases() {
                     </p>
                     <p
                       style={{
-                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "0.875rem",
                         color: "var(--text-secondary)",
                         lineHeight: "1.6",
@@ -344,7 +344,7 @@ export default function UseCases() {
                         borderRadius: "50px",
                         fontSize: "0.75rem",
                         fontWeight: "500",
-                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         background: "var(--bg-muted)",
                         color: "var(--text-secondary)",
                         border: "1px solid var(--border)",
@@ -375,7 +375,7 @@ export default function UseCases() {
         >
           <p
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.9rem",
               color: "var(--text-muted)",
               lineHeight: "1.6",
@@ -387,7 +387,7 @@ export default function UseCases() {
           <a
             href="#contact"
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.9rem",
               color: "var(--text-accent)",
               textDecoration: "none",

@@ -1,101 +1,65 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { ArrowRight, Zap } from "lucide-react";
+import { useEffect, useMemo, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import dynamic from "next/dynamic";
 
-export default function Hero() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const HeroBackground = dynamic(() => import("@/components/HeroBackground"), { ssr: false });
+
+const rotatingWords = ["scalable", "efficient", "integrated", "intelligent", "custom"];
+
+function CountStat({ end, suffix, label }: { end: number; suffix: string; label: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const counted = useRef(false);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !counted.current) {
+          counted.current = true;
+          const duration = 1500;
+          const start = performance.now();
+          const step = (now: number) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.round(eased * end));
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [end]);
 
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
+  return (
+    <div ref={ref} style={{ textAlign: "center" }}>
+      <div style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "2.5rem", color: "var(--accent)", letterSpacing: "-0.02em", lineHeight: 1 }}>
+        {count}{suffix}
+      </div>
+      <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "var(--text-muted)", letterSpacing: "0.08em", textTransform: "uppercase", marginTop: "0.3rem" }}>
+        {label}
+      </div>
+    </div>
+  );
+}
 
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+export default function Hero() {
+  const [wordIndex, setWordIndex] = useState(0);
 
-    // Particles
-    const particles: Array<{
-      x: number; y: number; vx: number; vy: number;
-      size: number; opacity: number; color: string;
-    }> = [];
-
-    const colors = isDark
-      ? ["#7c3aed", "#a78bfa", "#6d28d9", "#c4b5fd", "#4c1d95"]
-      : ["#6d28d9", "#7c3aed", "#4c1d95", "#8b5cf6", "#5b21b6"];
-
-    for (let i = 0; i < 60; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        size: Math.random() * 2.5 + 0.5,
-        opacity: Math.random() * 0.6 + 0.1,
-        color: colors[Math.floor(Math.random() * colors.length)],
-      });
-    }
-
-    let animId: number;
-    let time = 0;
-
-    const animate = () => {
-      if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      time += 0.005;
-
-      particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.opacity * (0.7 + 0.3 * Math.sin(time + p.x));
-        ctx.fill();
-      });
-
-      // Grid lines
-      ctx.globalAlpha = isDark ? 0.06 : 0.04;
-      ctx.strokeStyle = isDark ? "#7c3aed" : "#6d28d9";
-      ctx.lineWidth = 0.5;
-      const gridSize = 60;
-      for (let x = 0; x < canvas.width; x += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
-      }
-      for (let y = 0; y < canvas.height; y += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-        ctx.stroke();
-      }
-
-      ctx.globalAlpha = 1;
-      animId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    const handleResize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", handleResize);
-    };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 2500);
+    return () => clearInterval(interval);
   }, []);
+
+  const currentWord = useMemo(() => rotatingWords[wordIndex], [wordIndex]);
 
   return (
     <section
@@ -104,81 +68,22 @@ export default function Hero() {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
+        justifyContent: "center",
         overflow: "hidden",
-        background: "var(--gradient-hero)",
+        background: "var(--bg-primary)",
       }}
     >
-      {/* Canvas background */}
-      <canvas
-        ref={canvasRef}
+      {/* Three.js particle background */}
+      <HeroBackground />
+
+      {/* Gradient overlay for depth */}
+      <div
         style={{
           position: "absolute",
           inset: 0,
-          width: "100%",
-          height: "100%",
+          background: "radial-gradient(ellipse at center, transparent 0%, var(--bg-primary) 75%)",
           pointerEvents: "none",
-        }}
-      />
-
-      {/* Orb glows */}
-      <div
-        style={{
-          position: "absolute",
-          top: "15%",
-          right: "10%",
-          width: "500px",
-          height: "500px",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(124,58,237,var(--glow-strength)) 0%, transparent 70%)",
-          filter: "blur(40px)",
-          pointerEvents: "none",
-          animation: "floatOrb 8s ease-in-out infinite",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          bottom: "10%",
-          left: "5%",
-          width: "350px",
-          height: "350px",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(38,24,95,0.6) 0%, transparent 70%)",
-          filter: "blur(50px)",
-          pointerEvents: "none",
-          animation: "floatOrb 10s ease-in-out infinite reverse",
-        }}
-      />
-
-      {/* Decorative circle ring */}
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          right: "-100px",
-          transform: "translateY(-50%)",
-          width: "600px",
-          height: "600px",
-          borderRadius: "50%",
-          border: "1px solid var(--border)",
-          opacity: 0.3,
-          pointerEvents: "none",
-          animation: "rotateSlow 30s linear infinite",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          right: "-50px",
-          transform: "translateY(-50%)",
-          width: "450px",
-          height: "450px",
-          borderRadius: "50%",
-          border: "1px dashed var(--accent-bright)",
-          opacity: 0.15,
-          pointerEvents: "none",
-          animation: "rotateSlow 20s linear infinite reverse",
+          zIndex: 1,
         }}
       />
 
@@ -187,244 +92,162 @@ export default function Hero() {
         style={{
           position: "relative",
           zIndex: 10,
-          maxWidth: "1280px",
+          maxWidth: "1100px",
           margin: "0 auto",
           padding: "8rem 1.5rem 5rem",
           width: "100%",
+          textAlign: "center",
         }}
       >
-        <div style={{ maxWidth: "800px" }}>
-          {/* Badge */}
-          <div
+        <h1
+          style={{
+            fontFamily: "'Satoshi', sans-serif",
+            fontWeight: 400,
+            fontSize: "clamp(3rem, 8vw, 7rem)",
+            lineHeight: "1.05",
+            letterSpacing: "-0.02em",
+            color: "var(--text-primary)",
+            marginBottom: "2rem",
+          }}
+        >
+          We build{" "}
+          <span
+            style={{
+              display: "inline-block",
+              position: "relative",
+              minWidth: "420px",
+              verticalAlign: "baseline",
+              overflow: "hidden",
+              height: "1.05em",
+            }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={currentWord}
+                initial={{ y: 40, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -40, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 60, damping: 20, mass: 0.8 }}
+                style={{
+                  display: "inline-block",
+                  fontStyle: "italic",
+                  color: "var(--accent)",
+                  position: "absolute",
+                  left: 0,
+                  top: 0,
+                }}
+              >
+                {currentWord}
+              </motion.span>
+            </AnimatePresence>
+          </span>
+          <br />
+          digital systems.
+        </h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "clamp(1.05rem, 2vw, 1.25rem)",
+            lineHeight: "1.7",
+            color: "var(--text-secondary)",
+            marginBottom: "3rem",
+            maxWidth: "620px",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
+          WeTech Studio membantu perusahaan membangun website, sistem custom,
+          dashboard, dan solusi AI — dirancang untuk pertumbuhan nyata, bukan sekadar tampilan.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+        >
+          <a
+            href="https://wa.me/6287877946981?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20konsultasi%20project"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "0.5rem",
-              padding: "0.4rem 1rem",
+              gap: "0.6rem",
+              padding: "1rem 2.2rem",
               borderRadius: "50px",
-              border: "1px solid var(--border)",
-              background: "var(--bg-surface)",
-              color: "var(--text-accent)",
-              fontSize: "0.8rem",
+              background: "var(--accent)",
+              color: "#fff",
               fontWeight: "600",
-              fontFamily: "'Space Grotesk', sans-serif",
-              marginBottom: "2rem",
-              animation: "fadeUp 0.6s ease forwards",
-              letterSpacing: "0.05em",
-              textTransform: "uppercase",
+              fontSize: "1rem",
+              fontFamily: "'Inter', sans-serif",
+              textDecoration: "none",
+              transition: "all 0.25s ease",
+              border: "none",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "var(--accent-hover)";
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 8px 30px rgba(20,184,166,0.3)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "var(--accent)";
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "none";
             }}
           >
-            <Zap size={12} />
-            Digital Technology Studio
-          </div>
+            Start a Project
+            <ArrowRight size={18} />
+          </a>
+        </motion.div>
 
-          {/* Headline */}
-          <h1
-            style={{
-              fontFamily: "'Sora', sans-serif",
-              fontWeight: "800",
-              fontSize: "clamp(2.5rem, 6vw, 5rem)",
-              lineHeight: "1.05",
-              letterSpacing: "-0.03em",
-              color: "var(--text-primary)",
-              marginBottom: "1.5rem",
-              animation: "fadeUp 0.6s ease 0.1s both",
-            }}
-          >
-            Build Smarter{" "}
-            <span
-              style={{
-                display: "block",
-                background: "linear-gradient(135deg, #7c3aed, #a78bfa, #60a5fa)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                backgroundSize: "200% 200%",
-                animation: "gradientShift 4s ease infinite, fadeUp 0.6s ease 0.1s both",
-              }}
-            >
-              Digital Systems
-            </span>
-            for Growing Businesses
-          </h1>
-
-          {/* Subheadline */}
-          <p
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "clamp(1rem, 2vw, 1.2rem)",
-              lineHeight: "1.7",
-              color: "var(--text-secondary)",
-              marginBottom: "2.5rem",
-              maxWidth: "600px",
-              animation: "fadeUp 0.6s ease 0.2s both",
-            }}
-          >
-            WeTech Studio membantu bisnis membangun website, sistem custom, dashboard,
-            dan solusi AI yang dirancang untuk meningkatkan kredibilitas, efisiensi,
-            dan pertumbuhan.
-          </p>
-
-          {/* CTAs */}
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "1rem",
-              animation: "fadeUp 0.6s ease 0.3s both",
-            }}
-          >
-            <a
-              href="https://wa.me/6287877946981?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20konsultasi%20project"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                padding: "0.875rem 2rem",
-                borderRadius: "50px",
-                background: "linear-gradient(135deg, #26185f, #7c3aed)",
-                color: "#fff",
-                fontWeight: "700",
-                fontSize: "1rem",
-                fontFamily: "'Sora', sans-serif",
-                textDecoration: "none",
-                transition: "all 0.2s",
-                boxShadow: "0 8px 32px rgba(124,58,237,0.35)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 12px 40px rgba(124,58,237,0.5)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 8px 32px rgba(124,58,237,0.35)";
-              }}
-            >
-              Konsultasi Project
-              <ArrowRight size={18} />
-            </a>
-            <a
-              href="#services"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                padding: "0.875rem 2rem",
-                borderRadius: "50px",
-                border: "1.5px solid var(--border)",
-                background: "var(--bg-surface)",
-                color: "var(--text-primary)",
-                fontWeight: "600",
-                fontSize: "1rem",
-                fontFamily: "'Sora', sans-serif",
-                textDecoration: "none",
-                transition: "all 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "var(--accent-bright)";
-                e.currentTarget.style.background = "var(--bg-muted)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "var(--border)";
-                e.currentTarget.style.background = "var(--bg-surface)";
-              }}
-            >
-              Lihat Layanan
-            </a>
-          </div>
-
-          {/* Social proof */}
-          <div
-            style={{
-              marginTop: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              gap: "2rem",
-              flexWrap: "wrap",
-              animation: "fadeUp 0.6s ease 0.4s both",
-            }}
-          >
-            {[
-              { num: "50+", label: "Project Selesai" },
-              { num: "30+", label: "Klien Puas" },
-              { num: "3+", label: "Tahun Pengalaman" },
-            ].map((s) => (
-              <div key={s.label} style={{ display: "flex", flexDirection: "column" }}>
-                <span
-                  style={{
-                    fontFamily: "'Sora', sans-serif",
-                    fontWeight: "800",
-                    fontSize: "1.75rem",
-                    color: "var(--text-accent)",
-                    letterSpacing: "-0.03em",
-                  }}
-                >
-                  {s.num}
-                </span>
-                <span
-                  style={{
-                    fontFamily: "'Space Grotesk', sans-serif",
-                    fontSize: "0.8rem",
-                    color: "var(--text-muted)",
-                    fontWeight: "500",
-                  }}
-                >
-                  {s.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Stats - count up */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9, duration: 0.6 }}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "3rem",
+            marginTop: "4rem",
+            flexWrap: "wrap",
+          }}
+        >
+          {[
+            { end: 20, suffix: "+", label: "Projects" },
+            { end: 15, suffix: "+", label: "Clients" },
+            { end: 100, suffix: "%", label: "On-time" },
+          ].map((s) => (
+            <CountStat key={s.label} end={s.end} suffix={s.suffix} label={s.label} />
+          ))}
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.4 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
         style={{
           position: "absolute",
-          bottom: "2rem",
+          bottom: "2.5rem",
           left: "50%",
           transform: "translateX(-50%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "0.5rem",
-          opacity: 0.5,
+          zIndex: 10,
         }}
       >
         <div
           style={{
             width: "1px",
-            height: "60px",
-            background: "linear-gradient(to bottom, transparent, var(--accent-bright))",
-            animation: "pulseGlow 2s ease-in-out infinite",
+            height: "48px",
+            background: "linear-gradient(to bottom, transparent, var(--text-muted))",
           }}
         />
-      </div>
-
-      <style>{`
-        @keyframes floatOrb {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(-20px) scale(1.05); }
-        }
-        @keyframes rotateSlow {
-          from { transform: translateY(-50%) rotate(0deg); }
-          to { transform: translateY(-50%) rotate(360deg); }
-        }
-        @keyframes gradientShift {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(24px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulseGlow {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.8; }
-        }
-      `}</style>
+      </motion.div>
     </section>
   );
 }
