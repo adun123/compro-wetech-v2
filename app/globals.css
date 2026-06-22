@@ -104,7 +104,7 @@
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-inter, 'Inter', sans-serif);
     overflow-x: hidden;
   }
 
