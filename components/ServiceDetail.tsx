@@ -137,7 +137,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
               }}
             >
               <ArrowLeft size={16} />
-              Kembali ke layanan
+              Back to services
             </Link>
             <p
               style={{
@@ -249,7 +249,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
                 marginBottom: "1rem",
               }}
             >
-              Benefit utama
+              Key benefits
             </p>
             <PillList items={service.benefits} />
           </aside>
@@ -260,11 +260,11 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
         <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2rem" }} className="service-detail-grid">
             <div>
-              <SectionTitle eyebrow="Cocok untuk" title="Kapan layanan ini relevan?" />
+              <SectionTitle eyebrow="Best for" title="When is this service relevant?" />
               <PillList items={service.idealFor} />
             </div>
             <div>
-              <SectionTitle eyebrow="Output" title="Apa saja yang disiapkan?" />
+              <SectionTitle eyebrow="Deliverables" title="What will be prepared?" />
               <PillList items={service.deliverables} />
             </div>
           </div>
@@ -274,7 +274,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
       <section style={{ padding: "6rem 1.5rem", background: "var(--bg-secondary)", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 80% 20%, var(--accent-glow) 0%, transparent 55%)", pointerEvents: "none" }} />
         <div style={{ maxWidth: "1280px", margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <SectionTitle eyebrow="Proses" title="Alur kerja yang terarah dari awal" />
+          <SectionTitle eyebrow="Process" title="A clear workflow from the start" />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.25rem" }}>
             {service.process.map((step, index) => (
               <div
@@ -314,7 +314,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
 
       <section style={{ padding: "6rem 1.5rem", background: "var(--bg-primary)" }}>
         <div style={{ maxWidth: "980px", margin: "0 auto" }}>
-          <SectionTitle eyebrow="FAQ" title="Pertanyaan yang sering muncul" />
+          <SectionTitle eyebrow="FAQ" title="Common questions" />
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {service.faq.map((item) => (
               <details
@@ -343,14 +343,14 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
           <div style={{ display: "flex", justifyContent: "space-between", gap: "2rem", alignItems: "flex-end", flexWrap: "wrap", marginBottom: "2rem" }}>
             <div>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", fontWeight: "700", letterSpacing: "0.12em", textTransform: "uppercase", color: "#5eead4", marginBottom: "0.75rem" }}>
-                Layanan lain
+                Other services
               </p>
               <h2 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: "800", fontSize: "clamp(1.8rem, 4vw, 3rem)", color: "#f0fdfa", letterSpacing: "-0.03em", lineHeight: "1.1" }}>
-                Bangun ekosistem digital yang saling terhubung
+                Build a connected digital ecosystem
               </h2>
             </div>
             <Link href="/#services" style={{ color: "#99f6e4", fontFamily: "'Inter', sans-serif", fontWeight: "600", textDecoration: "none" }}>
-              Semua layanan
+              All services
             </Link>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1rem" }}>

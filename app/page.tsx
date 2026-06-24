@@ -4,7 +4,6 @@ import Hero from "@/components/sections/Hero";
 import Problem from "@/components/sections/Problem";
 import Solution from "@/components/sections/Solution";
 import Services from "@/components/sections/Services";
-import AISolution from "@/components/sections/AISolution";
 import Pricing from "@/components/sections/Pricing";
 import Projects from "@/components/sections/Projects";
 import WhyUsAndMore from "@/components/sections/WhyUsAndMore";
@@ -41,7 +40,6 @@ export default function Home() {
       <Problem />
       <Solution />
       <Services />
-      <AISolution />
       <Projects />
       <Pricing />
       <WhyUsAndMore />

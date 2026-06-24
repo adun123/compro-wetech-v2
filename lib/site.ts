@@ -12,17 +12,17 @@ export const siteConfig = {
   contact: {
     email: "hello@wetech.studio",
     whatsappUrl:
-      "https://wa.me/6281234567890?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20konsultasi%20project%20digital",
+      "https://wa.me/6287877946981?text=Hello%20WeTech%20Studio%2C%20I%20would%20like%20to%20discuss%20a%20digital%20project",
   },
   description:
-    "WeTech Studio membantu bisnis membangun website, sistem custom, dashboard, integrasi backend, dan solusi AI yang fungsional untuk pertumbuhan bisnis.",
+    "WeTech Studio helps businesses build professional websites, custom systems, dashboards, backend integrations, and practical automation solutions.",
   keywords: [
-    "jasa pembuatan website",
-    "jasa landing page",
-    "aplikasi web custom",
-    "dashboard bisnis",
-    "integrasi API",
-    "solusi AI bisnis",
+    "website development",
+    "landing page development",
+    "custom web application",
+    "business dashboard",
+    "API integration",
+    "business automation",
     "digital agency Jakarta",
     "WeTech Studio",
   ],

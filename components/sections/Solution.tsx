@@ -7,48 +7,107 @@ import { Compass, Code2, Rocket, ShieldCheck } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
-  { icon: Compass, num: "01", title: "Discovery & Strategy", desc: "Memahami bisnis, tujuan, dan merancang arsitektur solusi." },
-  { icon: Code2, num: "02", title: "Design & Development", desc: "UI/UX premium + development iteratif dengan update rutin." },
-  { icon: Rocket, num: "03", title: "Testing & Launch", desc: "QA menyeluruh, deployment aman, monitoring saat go-live." },
-  { icon: ShieldCheck, num: "04", title: "Support & Growth", desc: "Maintenance, pengembangan fitur, dan support berkelanjutan." },
+  {
+    icon: Compass,
+    num: "01",
+    title: "Discovery & Strategy",
+    desc: "We map your business goals, users, workflow, and the right structure for the solution.",
+    highlight: "We start by listening",
+  },
+  {
+    icon: Code2,
+    num: "02",
+    title: "Design & Development",
+    desc: "We turn the strategy into polished UI, clean code, and weekly progress you can review.",
+    highlight: "Thoughtful design, clean code",
+  },
+  {
+    icon: Rocket,
+    num: "03",
+    title: "Testing & Launch",
+    desc: "We test core scenarios, prepare deployment, and support the launch process.",
+    highlight: "Quality is non-negotiable",
+  },
+  {
+    icon: ShieldCheck,
+    num: "04",
+    title: "Support & Growth",
+    desc: "We help maintain, improve, and expand the system as new business needs appear.",
+    highlight: "We stay after launch",
+  },
 ];
 
 export default function Solution() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const stepsRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const floatingOrbRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Steps timeline animation
-      if (stepsRef.current) {
-        const items = stepsRef.current.querySelectorAll(".step-item");
-        const line = stepsRef.current.querySelector(".step-line-fill");
+      // Header animation
+      if (headerRef.current) {
+        gsap.from(headerRef.current.children, {
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+          y: 60,
+          opacity: 0,
+          stagger: 0.12,
+          duration: 0.9,
+          ease: "power3.out",
+        });
+      }
 
-        // Line draws as you scroll
-        if (line) {
-          gsap.fromTo(line, { scaleY: 0 }, {
+      // Floating orb animation
+      if (floatingOrbRef.current) {
+        gsap.to(floatingOrbRef.current, {
+          y: -30,
+          x: 20,
+          rotation: 360,
+          duration: 20,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      }
+
+      // Vertical line draw animation
+      if (lineRef.current) {
+        gsap.fromTo(
+          lineRef.current,
+          { scaleY: 0 },
+          {
             scaleY: 1,
             ease: "none",
             scrollTrigger: {
               trigger: stepsRef.current,
-              start: "top 60%",
-              end: "bottom 60%",
-              scrub: 0.8,
+              start: "top 70%",
+              end: "bottom 70%",
+              scrub: 1,
             },
-          });
-        }
+          }
+        );
+      }
 
+      // Steps animation
+      if (stepsRef.current) {
+        const items = stepsRef.current.querySelectorAll(".step-item");
         items.forEach((item, i) => {
           gsap.from(item, {
             scrollTrigger: {
               trigger: item,
-              start: "top 80%",
+              start: "top 88%",
+              toggleActions: "play none none reverse",
             },
-            x: -40,
+            x: -60,
             opacity: 0,
-            duration: 0.6,
+            duration: 0.8,
             delay: i * 0.1,
-            ease: "power2.out",
+            ease: "power3.out",
           });
         });
       }
@@ -60,89 +119,115 @@ export default function Solution() {
   return (
     <section
       ref={sectionRef}
-      id="solution"
+      id="process"
       style={{
-        padding: "8rem 1.5rem",
+        padding: "10rem 1.5rem 12rem",
         position: "relative",
         overflow: "hidden",
         background: "linear-gradient(135deg, #042f2e 0%, #052e2b 40%, #021716 100%)",
       }}
     >
+      {/* Floating decorative orb */}
+      <div
+        ref={floatingOrbRef}
+        style={{
+          position: "absolute",
+          top: "10%",
+          right: "15%",
+          width: "300px",
+          height: "300px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(45, 212, 191, 0.1) 0%, transparent 70%)",
+          filter: "blur(40px)",
+          pointerEvents: "none",
+        }}
+      />
+
       {/* Grid lines background */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           backgroundImage: `
-            linear-gradient(rgba(13,148,136,0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(13,148,136,0.05) 1px, transparent 1px)
+            linear-gradient(rgba(13,148,136,0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(13,148,136,0.06) 1px, transparent 1px)
           `,
           backgroundSize: "60px 60px",
           pointerEvents: "none",
         }}
       />
 
-      <div style={{ position: "relative", zIndex: 10, maxWidth: "960px", margin: "0 auto" }}>
+      {/* Radial gradient overlay */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "radial-gradient(ellipse at center, transparent 0%, rgba(2, 23, 22, 0.5) 100%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      <div style={{ position: "relative", zIndex: 10, maxWidth: "1000px", margin: "0 auto" }}>
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-          <p
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.8rem",
-              fontWeight: "600",
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color: "#5eead4",
-              marginBottom: "1rem",
-            }}
-          >
-            Solusi Kami
-          </p>
+        <div ref={headerRef} style={{ textAlign: "center", marginBottom: "5rem" }}>
+
+
           <h2
             style={{
               fontFamily: "'Satoshi', sans-serif",
-              fontWeight: 400,
-              fontSize: "clamp(2.2rem, 5vw, 4rem)",
-              lineHeight: "1.15",
+              fontWeight: 600,
+              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+              lineHeight: "1.1",
               letterSpacing: "-0.02em",
               color: "#f0fdfa",
               marginBottom: "1.5rem",
             }}
           >
-            Technology partner yang mengubah kebutuhan bisnis menjadi{" "}
-            <span style={{ fontStyle: "italic", color: "#5eead4" }}>solusi digital nyata</span>
+            A clear process that turns{" "}
+            <span
+              style={{
+                fontStyle: "italic",
+                fontWeight: 400,
+                color: "#5eead4",
+              }}
+            >
+              business needs
+            </span>
+            <br />
+            into working digital products
           </h2>
+
           <p
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "1.05rem",
+              fontSize: "1.1rem",
               lineHeight: "1.7",
               color: "#99f6e4",
               maxWidth: "650px",
               margin: "0 auto",
             }}
           >
-            Kami memahami bisnis Anda, merancang solusi yang tepat, dan memastikan
-            teknologi yang kami bangun benar-benar bekerja untuk pertumbuhan Anda.
+            We keep the process practical: understand the business, design the right
+            structure, build with care, then launch with room to grow.
           </p>
         </div>
 
         {/* 4-step workflow */}
-        <div ref={stepsRef} style={{ position: "relative", paddingLeft: "2.5rem" }}>
-          {/* Vertical line */}
+        <div ref={stepsRef} style={{ position: "relative", paddingLeft: "4rem" }}>
+          {/* Animated vertical line */}
           <div
             style={{
               position: "absolute",
-              left: "0.75rem",
-              top: 0,
-              bottom: 0,
+              left: "1rem",
+              top: "1.5rem",
+              bottom: "1.5rem",
               width: "2px",
-              background: "rgba(13,148,136,0.2)",
+              background: "rgba(13,148,136,0.15)",
               borderRadius: "1px",
             }}
           >
             <div
-              className="step-line-fill"
+              ref={lineRef}
               style={{
                 position: "absolute",
                 top: 0,
@@ -152,13 +237,33 @@ export default function Solution() {
                 background: "linear-gradient(180deg, #0d9488, #5eead4)",
                 borderRadius: "1px",
                 transformOrigin: "top",
+                transform: "scaleY(0)",
               }}
             />
           </div>
 
+          {/* Glowing node dots on the line */}
+          {[0, 1, 2, 3].map((i) => (
+            <div
+              key={i}
+              className={`node-dot node-${i}`}
+              style={{
+                position: "absolute",
+                left: "0.35rem",
+                top: `${2 + i * 28}%`,
+                width: "12px",
+                height: "12px",
+                borderRadius: "50%",
+                background: "#042f2e",
+                border: "2px solid rgba(13,148,136,0.3)",
+                zIndex: 2,
+              }}
+            />
+          ))}
+
           {/* Steps */}
           <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-            {steps.map((step) => {
+            {steps.map((step, i) => {
               const Icon = step.icon;
               return (
                 <div
@@ -166,32 +271,34 @@ export default function Solution() {
                   className="step-item"
                   style={{
                     display: "flex",
-                    gap: "1.25rem",
+                    gap: "1.5rem",
                     alignItems: "flex-start",
-                    padding: "1.5rem",
-                    borderRadius: "12px",
-                    border: "1px solid rgba(13,148,136,0.2)",
-                    background: "rgba(19,13,46,0.5)",
-                    backdropFilter: "blur(8px)",
-                    transition: "border-color 0.3s, transform 0.3s",
+                    padding: "2rem",
+                    borderRadius: "20px",
+                    border: "1px solid rgba(13,148,136,0.15)",
+                    background: "rgba(4, 47, 46, 0.5)",
+                    backdropFilter: "blur(10px)",
+                    transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(94,234,212,0.5)";
-                    e.currentTarget.style.transform = "translateX(4px)";
+                    e.currentTarget.style.borderColor = "rgba(94,234,212,0.4)";
+                    e.currentTarget.style.background = "rgba(13,148,136,0.1)";
+                    e.currentTarget.style.transform = "translateX(8px)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(13,148,136,0.2)";
+                    e.currentTarget.style.borderColor = "rgba(13,148,136,0.15)";
+                    e.currentTarget.style.background = "rgba(4, 47, 46, 0.5)";
                     e.currentTarget.style.transform = "translateX(0)";
                   }}
                 >
                   {/* Icon */}
                   <div
                     style={{
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: "10px",
-                      background: "rgba(13,148,136,0.15)",
-                      border: "1px solid rgba(13,148,136,0.3)",
+                      width: "52px",
+                      height: "52px",
+                      borderRadius: "14px",
+                      background: "linear-gradient(135deg, rgba(13,148,136,0.2), rgba(13,148,136,0.05))",
+                      border: "1px solid rgba(13,148,136,0.25)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -199,18 +306,19 @@ export default function Solution() {
                       flexShrink: 0,
                     }}
                   >
-                    <Icon size={20} strokeWidth={1.8} />
+                    <Icon size={24} strokeWidth={1.8} />
                   </div>
 
                   {/* Content */}
-                  <div>
+                  <div style={{ flex: 1 }}>
                     <h3
                       style={{
-                        fontFamily: "'Inter', sans-serif",
-                        fontWeight: "600",
-                        fontSize: "1.1rem",
+                        fontFamily: "'Satoshi', sans-serif",
+                        fontWeight: 600,
+                        fontSize: "1.35rem",
                         color: "#f0fdfa",
-                        marginBottom: "0.3rem",
+                        marginBottom: "0.5rem",
+                        letterSpacing: "-0.01em",
                       }}
                     >
                       {step.title}
@@ -218,7 +326,7 @@ export default function Solution() {
                     <p
                       style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.88rem",
+                        fontSize: "0.95rem",
                         color: "#5a8a85",
                         lineHeight: "1.6",
                       }}
@@ -232,6 +340,17 @@ export default function Solution() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        .node-dot {
+          transition: all 0.3s ease;
+        }
+        .step-item:hover ~ .node-dot,
+        .step-item:hover .node-dot {
+          background: #5eead4 !important;
+          box-shadow: 0 0 20px rgba(94, 234, 212, 0.5);
+        }
+      `}</style>
     </section>
   );
 }
