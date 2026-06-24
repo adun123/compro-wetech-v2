@@ -26,7 +26,7 @@ function ImageCarousel({ images, gradient }: { images: string[]; gradient: strin
         background: gradient,
       }}
     >
-      {/* Placeholder images — replace with real ones */}
+      {/* Project images */}
       {images.map((img, i) => (
         <div
           key={img}
@@ -91,14 +91,14 @@ export default function ProjectsPage() {
           onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
           onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
         >
-          <ArrowLeft size={14} /> Kembali ke Home
+          <ArrowLeft size={14} /> Back to Home
         </Link>
 
         <h1 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 400, fontSize: "clamp(3rem, 6vw, 5rem)", lineHeight: "1.05", letterSpacing: "-0.03em", color: "var(--text-primary)", marginBottom: "1.5rem" }}>
           Our Work
         </h1>
         <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: "1.7", maxWidth: "500px" }}>
-          Dari AI automation hingga web platform  dikerjakan dengan standar yang sama.
+          From automation platforms to company profiles, each project is shaped with the same attention to clarity, usability, and technical quality.
         </p>
 
         {/* Filter */}
@@ -126,9 +126,9 @@ export default function ProjectsPage() {
         </div>
       </div>
 
-      {/* Image Marquee — 2 rows, opposite directions */}
+      {/* Image marquee */}
       <div style={{ overflow: "hidden", padding: "2rem 0 3rem", position: "relative" }}>
-        {/* Row 1 → right */}
+        {/* Row 1 */}
         <div className="img-marquee" style={{ marginBottom: "1rem" }}>
           <div className="img-marquee-track img-marquee-right">
             {[...projects, ...projects].map((p, i) => (
@@ -138,7 +138,7 @@ export default function ProjectsPage() {
             ))}
           </div>
         </div>
-        {/* Row 2 ← left */}
+        {/* Row 2 */}
         <div className="img-marquee">
           <div className="img-marquee-track img-marquee-left">
             {[...projects, ...projects].map((p, i) => (

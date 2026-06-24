@@ -1,253 +1,312 @@
 "use client";
-import { useEffect, useMemo, useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import dynamic from "next/dynamic";
 
-const HeroBackground = dynamic(() => import("@/components/HeroBackground"), { ssr: false });
+import Image from "next/image";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { siteConfig } from "@/lib/site";
 
-const rotatingWords = ["scalable", "efficient", "integrated", "intelligent", "custom"];
-
-function CountStat({ end, suffix, label }: { end: number; suffix: string; label: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const counted = useRef(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !counted.current) {
-          counted.current = true;
-          const duration = 1500;
-          const start = performance.now();
-          const step = (now: number) => {
-            const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.round(eased * end));
-            if (progress < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
-        }
-      },
-      { threshold: 0.5 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [end]);
-
-  return (
-    <div ref={ref} style={{ textAlign: "center" }}>
-      <div style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "2.5rem", color: "var(--accent)", letterSpacing: "-0.02em", lineHeight: 1 }}>
-        {count}{suffix}
-      </div>
-      <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: "var(--text-muted)", letterSpacing: "0.08em", textTransform: "uppercase", marginTop: "0.3rem" }}>
-        {label}
-      </div>
-    </div>
-  );
-}
+const highlights = ["Company websites", "Custom web systems", "Dashboards & integrations"];
 
 export default function Hero() {
-  const [wordIndex, setWordIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
-
-  const currentWord = useMemo(() => rotatingWords[wordIndex], [wordIndex]);
-
   return (
     <section
       style={{
         position: "relative",
         minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
         overflow: "hidden",
-        background: "var(--bg-primary)",
+        background: "#f7fbf8",
+        color: "#10201e",
       }}
     >
-      {/* Three.js particle background */}
-      <HeroBackground />
-
-      {/* Gradient overlay for depth */}
+      <Image
+        src="/generated/compro-hero.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+          opacity: 0.92,
+        }}
+      />
       <div
         style={{
           position: "absolute",
           inset: 0,
-          background: "radial-gradient(ellipse at center, transparent 0%, var(--bg-primary) 75%)",
+          background:
+            "linear-gradient(90deg, rgba(247,251,248,0.98) 0%, rgba(247,251,248,0.86) 38%, rgba(247,251,248,0.28) 68%, rgba(247,251,248,0.12) 100%)",
           pointerEvents: "none",
-          zIndex: 1,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "radial-gradient(circle at 18% 84%, rgba(20,184,166,0.16), transparent 34%), linear-gradient(to top, #f7fbf8 0%, rgba(247,251,248,0) 28%)",
+          pointerEvents: "none",
         }}
       />
 
-      {/* Content */}
       <div
         style={{
           position: "relative",
-          zIndex: 10,
-          maxWidth: "1100px",
+          zIndex: 2,
+          maxWidth: "1280px",
+          minHeight: "100vh",
           margin: "0 auto",
-          padding: "8rem 1.5rem 5rem",
-          width: "100%",
-          textAlign: "center",
+          padding: "2rem 1.5rem 5rem",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
-        <h1
+        <a
+          href="/"
+          aria-label="WeTech Studio home"
           style={{
-            fontFamily: "'Satoshi', sans-serif",
-            fontWeight: 400,
-            fontSize: "clamp(3rem, 8vw, 7rem)",
-            lineHeight: "1.05",
-            letterSpacing: "-0.02em",
-            color: "var(--text-primary)",
-            marginBottom: "2rem",
+            display: "inline-flex",
+            width: "fit-content",
+            alignItems: "center",
+            marginBottom: "auto",
+            paddingTop: "0.25rem",
           }}
         >
-          We build{" "}
-          <span
-            style={{
-              display: "inline-block",
-              position: "relative",
-              minWidth: "420px",
-              verticalAlign: "baseline",
-              overflow: "hidden",
-              height: "1.05em",
-            }}
+          <Image
+            src="/logo-text.png"
+            alt="WeTech Studio"
+            width={240}
+            height={160}
+            priority
+            style={{ width: "154px", height: "auto", objectFit: "contain" }}
+          />
+        </a>
+
+        <div
+          className="hero-compro-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "minmax(0, 1fr) minmax(420px, 0.86fr)",
+            gap: "clamp(2rem, 6vw, 5rem)",
+            alignItems: "center",
+            width: "100%",
+            paddingTop: "5.5rem",
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 34 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={currentWord}
-                initial={{ y: 40, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -40, opacity: 0 }}
-                transition={{ type: "spring", stiffness: 60, damping: 20, mass: 0.8 }}
+            <p
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                padding: "0.45rem 0.8rem",
+                borderRadius: "999px",
+                border: "1px solid rgba(7,59,55,0.12)",
+                background: "rgba(255,255,255,0.7)",
+                color: "#0f766e",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.78rem",
+                fontWeight: 700,
+                marginBottom: "1.35rem",
+              }}
+            >
+              Digital technology partner for growing businesses
+            </p>
+
+            <h1
+              style={{
+                fontFamily: "'Satoshi', sans-serif",
+                fontWeight: 800,
+                fontSize: "clamp(3rem, 8vw, 6.8rem)",
+                lineHeight: "0.98",
+                letterSpacing: "-0.035em",
+                color: "#10201e",
+                maxWidth: "850px",
+                marginBottom: "1.5rem",
+              }}
+            >
+              We build websites and digital systems that look polished and work hard.
+            </h1>
+
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "clamp(1rem, 1.6vw, 1.18rem)",
+                lineHeight: "1.8",
+                color: "#48635f",
+                maxWidth: "650px",
+                marginBottom: "2rem",
+              }}
+            >
+              {siteConfig.brand} helps companies design and develop company profiles,
+              landing pages, custom web apps, operational dashboards, and backend
+              integrations with a professional visual standard.
+            </p>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.85rem", marginBottom: "2.5rem" }}>
+              <a
+                href={siteConfig.contact.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
-                  display: "inline-block",
-                  fontStyle: "italic",
-                  color: "var(--accent)",
-                  position: "absolute",
-                  left: 0,
-                  top: 0,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.65rem",
+                  minHeight: "50px",
+                  padding: "0 1.35rem",
+                  borderRadius: "999px",
+                  background: "#073b37",
+                  color: "#fff",
+                  fontFamily: "'Satoshi', sans-serif",
+                  fontSize: "0.98rem",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  boxShadow: "0 16px 38px rgba(7,59,55,0.22)",
                 }}
               >
-                {currentWord}
-              </motion.span>
-            </AnimatePresence>
-          </span>
-          <br />
-          digital systems.
-        </h1>
+                Start a Project
+                <ArrowRight size={18} />
+              </a>
+              <a
+                href="/#projects"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  minHeight: "50px",
+                  padding: "0 1.35rem",
+                  borderRadius: "999px",
+                  border: "1px solid rgba(7,59,55,0.18)",
+                  background: "rgba(255,255,255,0.62)",
+                  color: "#10201e",
+                  fontFamily: "'Satoshi', sans-serif",
+                  fontSize: "0.98rem",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                }}
+              >
+                View Portfolio
+              </a>
+            </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "clamp(1.05rem, 2vw, 1.25rem)",
-            lineHeight: "1.7",
-            color: "var(--text-secondary)",
-            marginBottom: "3rem",
-            maxWidth: "620px",
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}
-        >
-          WeTech Studio membantu perusahaan membangun website, sistem custom,
-          dashboard, dan solusi AI — dirancang untuk pertumbuhan nyata, bukan sekadar tampilan.
-        </motion.p>
+            <div className="hero-highlights" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem 1.1rem" }}>
+              {highlights.map((item) => (
+                <span
+                  key={item}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.45rem",
+                    color: "#48635f",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.88rem",
+                    fontWeight: 600,
+                  }}
+                >
+                  <CheckCircle2 size={16} color="#0f766e" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-        >
-          <a
-            href="https://wa.me/6287877946981?text=Halo%20WeTech%20Studio%2C%20saya%20ingin%20konsultasi%20project"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.6rem",
-              padding: "1rem 2.2rem",
-              borderRadius: "50px",
-              background: "var(--accent)",
-              color: "#fff",
-              fontWeight: "600",
-              fontSize: "1rem",
-              fontFamily: "'Inter', sans-serif",
-              textDecoration: "none",
-              transition: "all 0.25s ease",
-              border: "none",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "var(--accent-hover)";
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 8px 30px rgba(20,184,166,0.3)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "var(--accent)";
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "none";
-            }}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 28 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: "easeOut", delay: 0.12 }}
+            style={{ position: "relative", minHeight: "560px" }}
           >
-            Start a Project
-            <ArrowRight size={18} />
-          </a>
-        </motion.div>
+            <div
+              style={{
+                position: "absolute",
+                right: 0,
+                top: "22%",
+                width: "250px",
+                padding: "1.2rem",
+                borderRadius: "26px",
+                background: "rgba(255,255,255,0.82)",
+                border: "1px solid rgba(7,59,55,0.12)",
+                boxShadow: "0 24px 60px rgba(7,59,55,0.16)",
+                backdropFilter: "blur(16px)",
+              }}
+            >
+              <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "2.6rem", fontWeight: 800, color: "#073b37", lineHeight: 1 }}>
+                20+
+              </p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.86rem", lineHeight: 1.6, color: "#48635f" }}>
+                Delivered websites, dashboards, platforms, and automation projects.
+              </p>
+            </div>
 
-        {/* Stats - count up */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "3rem",
-            marginTop: "4rem",
-            flexWrap: "wrap",
-          }}
-        >
-          {[
-            { end: 20, suffix: "+", label: "Projects" },
-            { end: 15, suffix: "+", label: "Clients" },
-            { end: 100, suffix: "%", label: "On-time" },
-          ].map((s) => (
-            <CountStat key={s.label} end={s.end} suffix={s.suffix} label={s.label} />
-          ))}
-        </motion.div>
+            <div
+              style={{
+                position: "absolute",
+                left: "8%",
+                bottom: "8%",
+                width: "300px",
+                padding: "1rem",
+                borderRadius: "26px",
+                background: "#073b37",
+                color: "#e7fffb",
+                boxShadow: "0 24px 60px rgba(7,59,55,0.22)",
+              }}
+            >
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#99f6e4", fontWeight: 800, marginBottom: "0.8rem" }}>
+                What we deliver
+              </p>
+              {["Brand-ready websites", "Business dashboards", "Scalable web apps"].map((item) => (
+                <div
+                  key={item}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.6rem",
+                    padding: "0.55rem 0",
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.9rem",
+                    fontWeight: 600,
+                  }}
+                >
+                  <CheckCircle2 size={16} color="#5eead4" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.4 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        style={{
-          position: "absolute",
-          bottom: "2.5rem",
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 10,
-        }}
-      >
-        <div
-          style={{
-            width: "1px",
-            height: "48px",
-            background: "linear-gradient(to bottom, transparent, var(--text-muted))",
-          }}
-        />
-      </motion.div>
+      <style>{`
+        @media (max-width: 980px) {
+          .hero-compro-grid {
+            grid-template-columns: 1fr !important;
+            padding-top: 4rem !important;
+          }
+          .hero-compro-grid > div:last-child {
+            min-height: 500px !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .hero-compro-grid {
+            padding-top: 3.25rem !important;
+          }
+          .hero-highlights {
+            flex-direction: column !important;
+          }
+          .hero-compro-grid > div:last-child {
+            min-height: 260px !important;
+          }
+          .hero-compro-grid > div:last-child > div {
+            position: relative !important;
+            inset: auto !important;
+            width: 100% !important;
+            margin-bottom: 1rem;
+          }
+        }
+      `}</style>
     </section>
   );
 }

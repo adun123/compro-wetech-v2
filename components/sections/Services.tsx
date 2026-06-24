@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Services() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -19,6 +20,22 @@ export default function Services() {
 
     const mm = gsap.matchMedia();
 
+    // Header animation
+    if (headerRef.current) {
+      gsap.from(headerRef.current.children, {
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: "top 85%",
+        },
+        y: 50,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+    }
+
+    // Desktop: Horizontal scroll pinning
     mm.add("(min-width: 768px)", () => {
       const scrollWidth = track.scrollWidth - window.innerWidth;
 
@@ -51,57 +68,58 @@ export default function Services() {
     >
       {/* Header - fixed at top during scroll */}
       <div
+        ref={headerRef}
         style={{
-          padding: "4rem 2rem 2rem",
+          padding: "6rem 2rem 3rem",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "flex-end",
           flexWrap: "wrap",
-          gap: "1rem",
+          gap: "1.5rem",
           maxWidth: "1400px",
           margin: "0 auto",
         }}
       >
         <div>
-          <p
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.8rem",
-              fontWeight: "600",
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color: "var(--accent)",
-              marginBottom: "0.75rem",
-            }}
-          >
-            Layanan Kami
-          </p>
+
+
           <h2
             style={{
               fontFamily: "'Satoshi', sans-serif",
-              fontWeight: 400,
-              fontSize: "clamp(2rem, 4vw, 3.2rem)",
+              fontWeight: 600,
+              fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
               lineHeight: "1.1",
               letterSpacing: "-0.02em",
               color: "var(--text-primary)",
+              marginBottom: "1rem",
             }}
           >
-            Solusi digital untuk setiap{" "}
-            <span style={{ fontStyle: "italic", color: "var(--accent)" }}>kebutuhan bisnis</span>
+            Digital solutions for every{" "}
+            <span
+              style={{
+                fontStyle: "italic",
+                fontWeight: 400,
+                color: "var(--accent)",
+              }}
+            >
+              business need
+            </span>
           </h2>
         </div>
+
         <p
           style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: "0.85rem",
+            fontSize: "0.9rem",
             color: "var(--text-muted)",
             display: "flex",
             alignItems: "center",
             gap: "0.5rem",
+            maxWidth: "300px",
           }}
           className="hidden-mobile-services"
         >
-          Scroll untuk explore →
+          Scroll to explore →
         </p>
       </div>
 
@@ -112,50 +130,65 @@ export default function Services() {
         style={{
           display: "flex",
           gap: "1.5rem",
-          padding: "2rem 2rem 4rem",
+          padding: "1rem 2rem 5rem",
           width: "fit-content",
         }}
       >
-        {services.map((s) => (
+        {services.map((s, i) => (
           <div
             key={s.id}
+            className="service-card"
             style={{
-              width: "380px",
-              minWidth: "380px",
-              maxHeight: "calc(100vh - 180px)",
+              width: "400px",
+              minWidth: "400px",
+              maxHeight: "calc(100vh - 220px)",
               padding: "2rem",
-              borderRadius: "16px",
+              borderRadius: "20px",
               border: "1px solid var(--border)",
               background: "var(--bg-surface)",
               display: "flex",
               flexDirection: "column",
-              transition: "border-color 0.3s, transform 0.3s, box-shadow 0.3s",
+              transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
               cursor: "default",
               overflowY: "auto",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = s.color;
-              e.currentTarget.style.transform = "translateY(-4px)";
-              e.currentTarget.style.boxShadow = `0 12px 40px ${s.color}15`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "var(--border)";
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "none";
+              position: "relative",
             }}
           >
+            {/* Top accent bar */}
+            <div
+              className="card-accent-bar"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: "3px",
+                background: `linear-gradient(90deg, ${s.color}, transparent)`,
+                opacity: 0.5,
+                transition: "opacity 0.3s",
+                borderRadius: "20px 20px 0 0",
+              }}
+            />
+
             {/* Tag + Detail link */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "1.5rem",
+              }}
+            >
               <span
                 style={{
-                  padding: "0.25rem 0.7rem",
+                  padding: "0.3rem 0.8rem",
                   borderRadius: "50px",
-                  fontSize: "0.7rem",
-                  fontWeight: "600",
+                  fontSize: "0.72rem",
+                  fontWeight: 600,
                   fontFamily: "'Inter', sans-serif",
-                  background: `${s.color}15`,
+                  background: `${s.color}12`,
                   color: s.color,
-                  border: `1px solid ${s.color}30`,
+                  border: `1px solid ${s.color}25`,
                 }}
               >
                 {s.tag}
@@ -165,7 +198,7 @@ export default function Services() {
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.75rem",
-                  fontWeight: "600",
+                  fontWeight: 600,
                   color: s.color,
                   textDecoration: "none",
                   display: "inline-flex",
@@ -173,21 +206,23 @@ export default function Services() {
                   gap: "0.3rem",
                   transition: "gap 0.2s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.gap = "0.5rem")}
+                onMouseEnter={(e) => (e.currentTarget.style.gap = "0.6rem")}
                 onMouseLeave={(e) => (e.currentTarget.style.gap = "0.3rem")}
               >
                 Detail <ArrowRight size={12} />
               </Link>
             </div>
 
+
+
             {/* Title + Description */}
             <h3
               style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: "600",
-                fontSize: "1.25rem",
+                fontFamily: "'Satoshi', sans-serif",
+                fontWeight: 600,
+                fontSize: "1.35rem",
                 color: "var(--text-primary)",
-                marginBottom: "0.5rem",
+                marginBottom: "0.75rem",
                 letterSpacing: "-0.01em",
               }}
             >
@@ -196,7 +231,7 @@ export default function Services() {
             <p
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.88rem",
+                fontSize: "0.9rem",
                 color: "var(--text-muted)",
                 lineHeight: "1.7",
                 marginBottom: "1.5rem",
@@ -206,31 +241,161 @@ export default function Services() {
               {s.description}
             </p>
 
+            {/* Short tagline */}
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.85rem",
+                fontStyle: "italic",
+                color: s.color,
+                marginBottom: "1.5rem",
+                paddingBottom: "1.5rem",
+                borderBottom: "1px solid var(--border)",
+              }}
+            >
+              {s.short}
+            </p>
+
             {/* Benefits */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginBottom: "1.5rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              <span
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.7rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "var(--text-muted)",
+                  marginBottom: "0.25rem",
+                }}
+              >
+                Benefits
+              </span>
               {s.benefits.slice(0, 3).map((b) => (
-                <span
+                <div
                   key={b}
                   style={{
-                    padding: "0.2rem 0.6rem",
-                    borderRadius: "50px",
-                    fontSize: "0.72rem",
-                    fontFamily: "'Inter', sans-serif",
-                    background: "var(--bg-muted)",
-                    color: "var(--text-secondary)",
-                    border: "1px solid var(--border)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
                   }}
                 >
-                  {b}
-                </span>
+                  <span
+                    style={{
+                      width: "4px",
+                      height: "4px",
+                      borderRadius: "50%",
+                      background: s.color,
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.82rem",
+                      color: "var(--text-secondary)",
+                    }}
+                  >
+                    {b}
+                  </span>
+                </div>
               ))}
             </div>
-
           </div>
         ))}
+
+        {/* CTA Card */}
+        <div
+          style={{
+            width: "320px",
+            minWidth: "320px",
+            padding: "2.5rem",
+            borderRadius: "20px",
+            background: "linear-gradient(135deg, #042f2e, #0d9488)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            gap: "1.5rem",
+          }}
+        >
+          <div
+            style={{
+              width: "60px",
+              height: "60px",
+              borderRadius: "16px",
+              background: "rgba(255,255,255,0.1)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+
+          </div>
+          <div>
+            <h3
+              style={{
+                fontFamily: "'Satoshi', sans-serif",
+                fontSize: "1.35rem",
+                fontWeight: 600,
+                color: "#f0fdfa",
+                marginBottom: "0.75rem",
+              }}
+            >
+              Need a custom solution?
+            </h3>
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.9rem",
+                color: "rgba(255,255,255,0.7)",
+                lineHeight: "1.6",
+              }}
+            >
+              Book a free consultation to find the right solution for your business.
+            </p>
+          </div>
+          <a
+            href="https://wa.me/6287877946981?text=Hello%20WeTech%20Studio%2C%20I%20would%20like%20to%20discuss%20your%20services"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.875rem 1.75rem",
+              borderRadius: "999px",
+              background: "#fff",
+              color: "#042f2e",
+              fontFamily: "'Satoshi', sans-serif",
+              fontWeight: 600,
+              fontSize: "0.9rem",
+              textDecoration: "none",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.2)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "none";
+            }}
+          >
+            Talk to Us <ArrowRight size={16} />
+          </a>
+        </div>
       </div>
 
       <style>{`
+        .service-card:hover {
+          border-color: var(--accent) !important;
+          transform: translateY(-4px);
+          box-shadow: 0 16px 48px rgba(20, 184, 166, 0.1);
+        }
+        .service-card:hover .card-accent-bar {
+          opacity: 1 !important;
+        }
         @media (max-width: 767px) {
           .services-track {
             flex-direction: column !important;
