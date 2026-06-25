@@ -139,10 +139,10 @@ export default function Services() {
             key={s.id}
             className="service-card"
             style={{
-              width: "400px",
-              minWidth: "400px",
-              maxHeight: "calc(100vh - 220px)",
-              padding: "2rem",
+              width: "430px",
+              minWidth: "430px",
+              minHeight: "560px",
+              padding: "1.7rem",
               borderRadius: "20px",
               border: "1px solid var(--border)",
               background: "var(--bg-surface)",
@@ -150,7 +150,7 @@ export default function Services() {
               flexDirection: "column",
               transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
               cursor: "default",
-              overflowY: "auto",
+              overflow: "visible",
               position: "relative",
             }}
           >
@@ -176,7 +176,7 @@ export default function Services() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                marginBottom: "1.5rem",
+                marginBottom: "1.25rem",
               }}
             >
               <span
@@ -220,7 +220,8 @@ export default function Services() {
               style={{
                 fontFamily: "'Satoshi', sans-serif",
                 fontWeight: 600,
-                fontSize: "1.35rem",
+                fontSize: "1.24rem",
+                lineHeight: "1.2",
                 color: "var(--text-primary)",
                 marginBottom: "0.75rem",
                 letterSpacing: "-0.01em",
@@ -231,11 +232,10 @@ export default function Services() {
             <p
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.9rem",
+                fontSize: "0.84rem",
                 color: "var(--text-muted)",
-                lineHeight: "1.7",
-                marginBottom: "1.5rem",
-                flex: 1,
+                lineHeight: "1.58",
+                marginBottom: "1.15rem",
               }}
             >
               {s.description}
@@ -245,11 +245,12 @@ export default function Services() {
             <p
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.85rem",
+                fontSize: "0.8rem",
+                lineHeight: "1.5",
                 fontStyle: "italic",
                 color: s.color,
-                marginBottom: "1.5rem",
-                paddingBottom: "1.5rem",
+                marginBottom: "1.15rem",
+                paddingBottom: "1.15rem",
                 borderBottom: "1px solid var(--border)",
               }}
             >
@@ -257,7 +258,7 @@ export default function Services() {
             </p>
 
             {/* Benefits */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginTop: "auto" }}>
               <span
                 style={{
                   fontFamily: "'Inter', sans-serif",
@@ -291,7 +292,8 @@ export default function Services() {
                   <span
                     style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.82rem",
+                      fontSize: "0.8rem",
+                      lineHeight: "1.45",
                       color: "var(--text-secondary)",
                     }}
                   >

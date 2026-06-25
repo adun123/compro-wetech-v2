@@ -6,6 +6,7 @@ import { Code2, Handshake, Rocket, ShieldCheck, Target, Wrench, ArrowRight, Exte
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/lib/services";
+import { siteConfig } from "@/lib/site";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,8 +28,8 @@ const companyLinks = [
 ];
 
 const contactLinks = [
-  { label: "hello@wetech.studio", href: "mailto:hello@wetech.studio", external: false },
-  { label: "WhatsApp", href: "https://wa.me/6287877946981", external: true },
+  { label: siteConfig.contact.email, href: `mailto:${siteConfig.contact.email}`, external: false },
+  { label: "WhatsApp", href: siteConfig.contact.whatsappUrl, external: true },
 ];
 
 export default function WhyUsAndMore() {
@@ -606,7 +607,7 @@ export default function WhyUsAndMore() {
                 color: "#3d5856",
               }}
             >
-              © 2024 WeTech Studio · PT WeTech Digital Nusantara
+              © 2024 {siteConfig.brand} · {siteConfig.legalName}
             </p>
             <p
               style={{

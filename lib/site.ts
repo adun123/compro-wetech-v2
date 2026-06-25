@@ -1,7 +1,7 @@
 export const siteConfig = {
   url: "https://wetechstudio.id",
   brand: "WeTech Studio",
-  legalName: "PT WeTech Digital Nusantara",
+  legalName: "WETECH NEXUS DIGITAL",
   locale: "id_ID",
   language: "id",
   area: {
@@ -10,7 +10,7 @@ export const siteConfig = {
     country: "Indonesia",
   },
   contact: {
-    email: "hello@wetech.studio",
+    email: "hello@wetech.com",
     whatsappUrl:
       "https://wa.me/6287877946981?text=Hello%20WeTech%20Studio%2C%20I%20would%20like%20to%20discuss%20a%20digital%20project",
   },

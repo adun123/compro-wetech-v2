@@ -81,10 +81,12 @@ export default function Projects() {
             style={{
               fontFamily: "'Satoshi', sans-serif",
               fontWeight: 600,
-              fontSize: "clamp(2.5rem, 6vw, 4rem)",
+              fontSize: "clamp(2.35rem, 5.4vw, 4rem)",
               lineHeight: "1.1",
               letterSpacing: "-0.02em",
               color: "var(--text-primary)",
+              maxWidth: "780px",
+              paddingRight: "0.12em",
             }}
           >
             Selected work we have{" "}
@@ -96,6 +98,8 @@ export default function Projects() {
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
+                display: "inline-block",
+                paddingRight: "0.08em",
               }}
             >
               built
@@ -118,10 +122,12 @@ export default function Projects() {
       {/* Showcase blocks - Full width with gradient backgrounds */}
       <div style={{ position: "relative" }}>
         {featured.map((p, i) => (
-          <div
+          <Link
             key={p.slug}
+            href={`/projects/${p.slug}`}
             className="showcase-block"
             style={{
+              display: "block",
               position: "relative",
               padding: "6rem 1.5rem",
               background: p.gradient,
@@ -129,6 +135,7 @@ export default function Projects() {
               borderBottom: "1px solid rgba(255,255,255,0.05)",
               overflow: "hidden",
               cursor: "pointer",
+              textDecoration: "none",
               transition: "padding 0.4s ease",
             }}
           >
@@ -297,7 +304,7 @@ export default function Projects() {
                 pointerEvents: "none",
               }}
             />
-          </div>
+          </Link>
         ))}
       </div>
 

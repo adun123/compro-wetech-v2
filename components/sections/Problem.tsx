@@ -22,6 +22,7 @@ const proofPoints = [
 ];
 
 const clientLogos = [
+  "/logo/btn-logo.png",
   "/logo/pegadaian-logo.png",
   "/logo/medime.png",
   "/logo/logo-tataletak.png",
@@ -30,6 +31,7 @@ const clientLogos = [
   "/logo/logo-bangunin.png",
   "/logo/logo-aquaculture.png",
   "/logo/haka-auto.png",
+  "/logo/apj-media.png",
 ];
 
 export default function Problem() {

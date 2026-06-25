@@ -1,7 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import type { Service } from "@/lib/services";
 import { services } from "@/lib/services";
+import { getProjectsByService } from "@/lib/projects";
 import { siteConfig } from "@/lib/site";
 
 type ServiceDetailProps = {
@@ -73,8 +75,70 @@ function PillList({ items }: { items: string[] }) {
   );
 }
 
+function ServicePreview({ service, image }: { service: Service; image?: string }) {
+  return (
+    <div
+      style={{
+        marginBottom: "1.25rem",
+        borderRadius: "18px",
+        overflow: "hidden",
+        border: "1px solid var(--border)",
+        background: "var(--bg-muted)",
+      }}
+    >
+      <div style={{ position: "relative", aspectRatio: "16 / 9", background: `linear-gradient(135deg, ${service.color}, #042f2e)` }}>
+        {image ? (
+          <Image src={image} alt={`${service.title} example output`} fill sizes="(max-width: 920px) 100vw, 360px" style={{ objectFit: "contain", padding: "0.55rem", opacity: 0.92 }} />
+        ) : (
+          <div
+            style={{
+              position: "absolute",
+              inset: "1rem",
+              borderRadius: "14px",
+              border: "1px solid rgba(255,255,255,0.18)",
+              background: "rgba(255,255,255,0.08)",
+            }}
+          >
+            <div style={{ height: "46px", borderBottom: "1px solid rgba(255,255,255,0.16)", display: "flex", alignItems: "center", gap: "0.4rem", padding: "0 1rem" }}>
+              {[0, 1, 2].map((item) => (
+                <span key={item} style={{ width: "8px", height: "8px", borderRadius: "50%", background: "rgba(255,255,255,0.42)" }} />
+              ))}
+            </div>
+            <div style={{ display: "grid", gap: "0.7rem", padding: "1rem" }}>
+              <span style={{ width: "60%", height: "12px", borderRadius: "999px", background: "rgba(255,255,255,0.5)" }} />
+              <span style={{ width: "86%", height: "12px", borderRadius: "999px", background: "rgba(255,255,255,0.22)" }} />
+              <span style={{ width: "72%", height: "12px", borderRadius: "999px", background: "rgba(255,255,255,0.22)" }} />
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.7rem", marginTop: "0.4rem" }}>
+                <span style={{ height: "54px", borderRadius: "12px", background: "rgba(255,255,255,0.14)" }} />
+                <span style={{ height: "54px", borderRadius: "12px", background: "rgba(255,255,255,0.14)" }} />
+              </div>
+            </div>
+          </div>
+        )}
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.38), transparent 58%)" }} />
+        <p
+          style={{
+            position: "absolute",
+            left: "1rem",
+            bottom: "1rem",
+            right: "1rem",
+            fontFamily: "'Satoshi', sans-serif",
+            fontWeight: 800,
+            color: "#f0fdfa",
+            fontSize: "1.1rem",
+            lineHeight: 1.25,
+          }}
+        >
+          Example output for {service.title}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function ServiceDetail({ service }: ServiceDetailProps) {
   const relatedServices = services.filter((item) => item.slug !== service.slug);
+  const relatedProjects = getProjectsByService(service.slug);
 
   return (
     <main style={{ background: "var(--bg-primary)", minHeight: "100vh" }}>
@@ -238,6 +302,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
               alignSelf: "start",
             }}
           >
+            <ServicePreview service={service} image={relatedProjects[0]?.images[0]} />
             <p
               style={{
                 fontFamily: "'Inter', sans-serif",
@@ -311,6 +376,51 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
           </div>
         </div>
       </section>
+
+      {relatedProjects.length > 0 && (
+        <section style={{ padding: "6rem 1.5rem", background: "var(--bg-primary)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: "2rem", alignItems: "flex-end", flexWrap: "wrap", marginBottom: "2rem" }}>
+              <SectionTitle eyebrow="Related work" title="Proof from similar projects" />
+              <Link href="/projects" style={{ color: "var(--text-accent)", fontFamily: "'Inter', sans-serif", fontWeight: "700", textDecoration: "none" }}>
+                View all work
+              </Link>
+            </div>
+            <div className="service-related-projects">
+              {relatedProjects.slice(0, 3).map((project) => (
+                <Link
+                  key={project.slug}
+                  href={`/projects/${project.slug}`}
+                  style={{
+                    display: "block",
+                    overflow: "hidden",
+                    borderRadius: "18px",
+                    border: "1px solid var(--border)",
+                    background: "var(--bg-surface)",
+                    textDecoration: "none",
+                    color: "var(--text-primary)",
+                  }}
+                >
+                  <div style={{ position: "relative", aspectRatio: "16 / 9", background: project.gradient }}>
+                    <Image src={project.images[0]} alt={`${project.title} preview`} fill sizes="(max-width: 920px) 100vw, 33vw" style={{ objectFit: "contain", padding: "0.55rem" }} />
+                  </div>
+                  <div style={{ padding: "1.25rem" }}>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.72rem", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-accent)", marginBottom: "0.5rem" }}>
+                      {project.category}
+                    </p>
+                    <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 800, fontSize: "1.15rem", marginBottom: "0.55rem" }}>
+                      {project.title}
+                    </h3>
+                    <p style={{ fontFamily: "'Inter', sans-serif", color: "var(--text-muted)", lineHeight: 1.6, fontSize: "0.9rem" }}>
+                      {project.description}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section style={{ padding: "6rem 1.5rem", background: "var(--bg-primary)" }}>
         <div style={{ maxWidth: "980px", margin: "0 auto" }}>
@@ -386,6 +496,14 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
         @media (min-width: 920px) {
           .service-detail-hero { grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.6fr) !important; align-items: center !important; }
           .service-detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+        }
+        .service-related-projects {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 1rem;
+        }
+        @media (max-width: 919px) {
+          .service-related-projects { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </main>

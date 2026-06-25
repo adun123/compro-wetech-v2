@@ -41,7 +41,7 @@ function ImageCarousel({ images, gradient }: { images: string[]; gradient: strin
             src={img}
             alt=""
             fill
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "contain", padding: "0.75rem" }}
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
@@ -132,8 +132,8 @@ export default function ProjectsPage() {
         <div className="img-marquee" style={{ marginBottom: "1rem" }}>
           <div className="img-marquee-track img-marquee-right">
             {[...projects, ...projects].map((p, i) => (
-              <div key={`r1-${p.slug}-${i}`} style={{ width: "320px", height: "200px", borderRadius: "12px", overflow: "hidden", flexShrink: 0, position: "relative", background: p.gradient }}>
-                <Image src={p.images[0]} alt={p.title} fill style={{ objectFit: "cover" }} sizes="320px" />
+              <div key={`r1-${p.slug}-${i}`} style={{ width: "320px", aspectRatio: "16 / 9", borderRadius: "12px", overflow: "hidden", flexShrink: 0, position: "relative", background: p.gradient }}>
+                <Image src={p.images[0]} alt={p.title} fill style={{ objectFit: "contain", padding: "0.45rem" }} sizes="320px" />
               </div>
             ))}
           </div>
@@ -142,8 +142,8 @@ export default function ProjectsPage() {
         <div className="img-marquee">
           <div className="img-marquee-track img-marquee-left">
             {[...projects, ...projects].map((p, i) => (
-              <div key={`r2-${p.slug}-${i}`} style={{ width: "320px", height: "200px", borderRadius: "12px", overflow: "hidden", flexShrink: 0, position: "relative", background: p.gradient }}>
-                <Image src={p.images[1] || p.images[0]} alt={p.title} fill style={{ objectFit: "cover" }} sizes="320px" />
+              <div key={`r2-${p.slug}-${i}`} style={{ width: "320px", aspectRatio: "16 / 9", borderRadius: "12px", overflow: "hidden", flexShrink: 0, position: "relative", background: p.gradient }}>
+                <Image src={p.images[1] || p.images[0]} alt={p.title} fill style={{ objectFit: "contain", padding: "0.45rem" }} sizes="320px" />
               </div>
             ))}
           </div>
@@ -170,9 +170,9 @@ export default function ProjectsPage() {
             }}
           >
             {/* Image carousel - alternate sides */}
-            <div style={{ order: i % 2 === 0 ? 1 : 2, height: "280px" }}>
+            <Link href={`/projects/${p.slug}`} style={{ order: i % 2 === 0 ? 1 : 2, aspectRatio: "16 / 9", display: "block", textDecoration: "none" }} aria-label={`View ${p.title} case study`}>
               <ImageCarousel images={p.images} gradient={p.gradient} />
-            </div>
+            </Link>
 
             {/* Content */}
             <div style={{ order: i % 2 === 0 ? 2 : 1 }}>
@@ -206,6 +206,23 @@ export default function ProjectsPage() {
                   </span>
                 ))}
               </div>
+              <Link
+                href={`/projects/${p.slug}`}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.45rem",
+                  marginTop: "1.5rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.86rem",
+                  fontWeight: 700,
+                  color: "var(--accent)",
+                  textDecoration: "none",
+                }}
+              >
+                View case study
+                <ArrowLeft size={14} style={{ transform: "rotate(180deg)" }} />
+              </Link>
             </div>
           </div>
         ))}
